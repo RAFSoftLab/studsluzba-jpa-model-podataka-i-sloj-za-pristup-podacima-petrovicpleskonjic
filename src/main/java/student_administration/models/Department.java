@@ -16,7 +16,7 @@ public class Department implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int departmentId;
 
 	private String name;
 
@@ -32,12 +32,12 @@ public class Department implements Serializable {
 	public Department() {}
 	
 
-	public int getId() {
-		return id;
+	public int getDepartmentId() {
+		return departmentId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	public String getName() {

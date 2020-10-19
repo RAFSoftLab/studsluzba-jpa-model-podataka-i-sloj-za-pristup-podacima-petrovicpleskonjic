@@ -18,7 +18,7 @@ public class Student implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int studentId;
 
 	private int enrollementYear;
 
@@ -28,7 +28,7 @@ public class Student implements Serializable {
 	
 	//bi-directional many-to-one association to StudProgram
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name="id")
+	@JoinColumn(name="departmentId")
 	private Department department;
 	
 
@@ -44,13 +44,13 @@ public class Student implements Serializable {
 	}
 
 
-	public int getId() {
-		return id;
+	public int getStudentId() {
+		return studentId;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 
