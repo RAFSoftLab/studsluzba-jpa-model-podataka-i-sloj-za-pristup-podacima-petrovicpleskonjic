@@ -20,50 +20,116 @@ public class Department implements Serializable {
 
 	private String name;
 
-	private String shortName;
-
-	//bi-directional many-to-one association to Student
-	@OneToMany(mappedBy="department")
-	private List<Student> students;
+	private String shortName;	//RN,RI...
 	
-//	@OneToMany(mappedBy="department")
-//	private List<Predmet> predmets;
+	private int yearOfAccreditation;
+	
+	private String title;	//zvanje koje se dobija po zavrsetkou
+	
+	private int durationInSemesters;	//koliko semestara traje
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private TypeOfStudy typeOfStudy;
+	
+	@OneToMany(mappedBy="department")
+	private List<Subject> subjects;
 
+	@OneToMany(mappedBy = "department")
+	private List<StudentIndex> studentIndexes;
+	
 	public Department() {}
 	
+	
+
+	public Department(String name, String shortName, int yearOfAccreditation, String title, int durationInSemesters,
+			TypeOfStudy typeOfStudy, List<Subject> subjects, List<StudentIndex> studentIndexes) {
+		super();
+		this.name = name;
+		this.shortName = shortName;
+		this.yearOfAccreditation = yearOfAccreditation;
+		this.title = title;
+		this.durationInSemesters = durationInSemesters;
+		this.typeOfStudy = typeOfStudy;
+		this.subjects = subjects;
+		this.studentIndexes = studentIndexes;
+	}
+
+
 
 	public int getDepartmentId() {
 		return departmentId;
-	}
-
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getShortName() {
 		return shortName;
+	}
+
+	public int getYearOfAccreditation() {
+		return yearOfAccreditation;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public int getDurationInSemesters() {
+		return durationInSemesters;
+	}
+
+	public TypeOfStudy getTypeOfStudy() {
+		return typeOfStudy;
+	}
+
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
 
-	public List<Student> getStudents() {
-		return this.students;
+	public void setYearOfAccreditation(int yearOfAccreditation) {
+		this.yearOfAccreditation = yearOfAccreditation;
 	}
 
-	public void setStudents(List<Student> students) {
-		this.students = students;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
+	public void setDurationInSemesters(int durationInSemesters) {
+		this.durationInSemesters = durationInSemesters;
+	}
+
+	public void setTypeOfStudy(TypeOfStudy typeOfStudy) {
+		this.typeOfStudy = typeOfStudy;
+	}
+
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
+
+	public List<StudentIndex> getStudentIndexes() {
+		return studentIndexes;
+	}
+
+	public void setStudentIndexes(List<StudentIndex> studentIndexes) {
+		this.studentIndexes = studentIndexes;
+	}	
+	
+
+/*
 	public Student addStudent(Student student) {
 		getStudents().add(student);
 		student.setDepartment(this);
@@ -77,6 +143,6 @@ public class Department implements Serializable {
 
 		return student;
 	}
-	
+*/
 
 }
