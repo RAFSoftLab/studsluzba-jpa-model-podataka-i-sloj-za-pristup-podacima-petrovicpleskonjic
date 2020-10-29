@@ -56,7 +56,7 @@ public class Student{
 	private HighSchool highSchool;
 	
 	@OneToMany(mappedBy= "student")
-	private List<StudentIndex> indexs;
+	private List<StudentIndex> studentIndexes;
 	
 	//private List<PassedSubject> passedSubjects;
 	
@@ -84,7 +84,7 @@ public class Student{
 		this.iDNumber = iDNumber;
 		this.issuedAnIDCard = issuedAnIDCard;
 		this.highSchool = highSchool;
-		this.indexs = indexs;
+		this.studentIndexes = studentIndexes;
 	}
 
 	public int getStudentId() {
@@ -159,8 +159,8 @@ public class Student{
 		return highSchool;
 	}
 
-	public List<StudentIndex> getIndexs() {
-		return indexs;
+	public List<StudentIndex> getStudentIndexes() {
+		return studentIndexes;
 	}
 
 	public void setStudentId(int studentId) {
@@ -235,8 +235,8 @@ public class Student{
 		this.highSchool = highSchool;
 	}
 
-	public void setIndexs(List<StudentIndex> indexs) {
-		this.indexs = indexs;
+	public void setIndexs(List<StudentIndex> studentIndexes) {
+		this.studentIndexes = studentIndexes;
 	}
 
 //	public List<PassedSubject> getPassedSubjects() {

@@ -28,7 +28,7 @@ public class SchoolYear {
 	@OneToMany(mappedBy = "schoolYear")
 	private List<ExaminationPeriod> examinationPeriods;
 	
-	@ManyToMany(mappedBy = "schoolYears")
+	@ManyToMany()
 	private List<StudentIndex> studentIndexes;
 
 	public SchoolYear(boolean active) {
@@ -58,6 +58,14 @@ public class SchoolYear {
 
 	public void setExaminationPeriods(List<ExaminationPeriod> examinationPeriods) {
 		this.examinationPeriods = examinationPeriods;
+	}
+
+	public List<StudentIndex> getStudentIndexes() {
+		return studentIndexes;
+	}
+
+	public void setStudentIndexes(List<StudentIndex> studentIndexes) {
+		this.studentIndexes = studentIndexes;
 	}
 	
 	

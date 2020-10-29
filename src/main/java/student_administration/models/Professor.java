@@ -39,7 +39,7 @@ public class Professor{
 	@OneToMany(mappedBy = "professor")
 	private List<Exam> exams;
 	
-	@ManyToMany(mappedBy = "professors")
+	@ManyToMany()
 	private List<College> colleges;
 
 	public Professor(String name, String surname, String middlename, String email,
@@ -50,6 +50,14 @@ public class Professor{
 		this.middlename = middlename;
 		this.email = email;
 		this.titles = titles;
+	}
+	
+	public void setColleges(List<College> colleges) {
+		this.colleges = colleges;
+	}
+	
+	public List<College> getColleges() {
+		return colleges;
 	}
 
 	public int getProfessorId() {

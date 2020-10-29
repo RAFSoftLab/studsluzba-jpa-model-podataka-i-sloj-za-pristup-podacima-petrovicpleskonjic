@@ -28,9 +28,6 @@ public class College {
 	
 	private String type;
 	
-	@OneToMany(mappedBy = "college")
-	private List<Student> students;
-	
 	@ManyToMany(mappedBy = "colleges")
 	private List<Professor> professors;
 		
@@ -39,6 +36,14 @@ public class College {
 		this.name = name;
 		this.place = place;
 		this.type = type;
+	}
+	
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+	
+	public void setProfessors(List<Professor> professors) {
+		this.professors = professors;
 	}
 
 	public int getCollegeId() {
