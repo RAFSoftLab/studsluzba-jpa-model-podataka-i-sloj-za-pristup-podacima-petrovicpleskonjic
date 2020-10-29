@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,7 +23,13 @@ public class SchoolYear {
 	private boolean active;
 	
 	@OneToMany(mappedBy = "schoolYear")
+    private List<HoldSubject> holdSubjectList;
+	
+	@OneToMany(mappedBy = "schoolYear")
 	private List<ExaminationPeriod> examinationPeriods;
+	
+	@ManyToMany(mappedBy = "schoolYears")
+	private List<StudentIndex> studentIndexes;
 
 	public SchoolYear(boolean active) {
 		super();

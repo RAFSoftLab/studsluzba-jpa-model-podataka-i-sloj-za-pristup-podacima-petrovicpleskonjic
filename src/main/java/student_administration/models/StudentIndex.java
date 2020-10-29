@@ -1,6 +1,7 @@
 package student_administration.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,22 +9,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="studentindex")
 @NamedQuery(name="StudentIndex.findAll", query="SELECT si FROM StudentIndex si")
-public class StudentIndex{
+public class StudentIndex {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentIndexId;
-	
-	private int godina;
-	
+		
 	private int broj;
 	
 	private boolean active;
@@ -36,10 +37,15 @@ public class StudentIndex{
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Department department;
+	
+	@OneToMany(mappedBy = "studentIndex")
+    private List<ListenSubject> listenSubjectList;
+	
+	@ManyToMany(mappedBy = "studentIndexes")
+	private List<SchoolYear> schoolYears;
 
-	public StudentIndex(int godina, int broj, boolean active, Date activeDate, Student student, Department department) {
+	public StudentIndex(int broj, boolean active, Date activeDate, Student student, Department department) {
 		super();
-		this.godina = godina;
 		this.broj = broj;
 		this.active = active;
 		this.activeDate = activeDate;
@@ -49,10 +55,6 @@ public class StudentIndex{
 
 	public int getStudentIndexId() {
 		return studentIndexId;
-	}
-
-	public int getGodina() {
-		return godina;
 	}
 
 	public int getBroj() {
@@ -73,10 +75,6 @@ public class StudentIndex{
 
 	public void setStudentIndexId(int studentIndexId) {
 		this.studentIndexId = studentIndexId;
-	}
-
-	public void setGodina(int godina) {
-		this.godina = godina;
 	}
 
 	public void setBroj(int broj) {

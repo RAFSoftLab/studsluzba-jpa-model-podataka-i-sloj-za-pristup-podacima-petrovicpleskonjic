@@ -1,29 +1,41 @@
 package student_administration.models;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="preexamobligations")
+@NamedQuery(name="PreExamObligations.findAll", query="SELECT peo FROM PreExamObligations peo")
 public class PreExamObligations {
 	
-	private Subject subject;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int preExamObligationsId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private HoldSubject holdSubject;
 
 	private String type;	//test,kolokvijum,projekat...
 	
 	private float maxPoints;
 	
-	private SchoolYear schoolYear;
-
-	public PreExamObligations(Subject subject, String type, float maxPoints, SchoolYear schoolYear) {
+	@OneToMany(mappedBy = "preExamObligations")
+    private List<WonPreExamObligations> wonPreExamObligations;
+	
+	public PreExamObligations(HoldSubject holdSubject, String type, float maxPoints) {
 		super();
-		this.subject = subject;
+		this.holdSubject = holdSubject;
 		this.type = type;
 		this.maxPoints = maxPoints;
-		this.schoolYear = schoolYear;
-	}
-
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
 	}
 
 	public String getType() {
@@ -40,15 +52,6 @@ public class PreExamObligations {
 
 	public void setMaxPoints(float maxPoints) {
 		this.maxPoints = maxPoints;
-	}
-
-	public SchoolYear getSchoolYear() {
-		return schoolYear;
-	}
-
-	public void setSchoolYear(SchoolYear schoolYear) {
-		this.schoolYear = schoolYear;
-	}
-	
+	}	
 	
 }

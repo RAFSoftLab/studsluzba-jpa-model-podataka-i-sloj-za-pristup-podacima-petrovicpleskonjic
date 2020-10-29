@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="college")
 @NamedQuery(name="College.findAll", query="SELECT c FROM College c")
-public class College{
+public class College {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,8 +27,13 @@ public class College{
 	private String place;
 	
 	private String type;
+	
+	@OneToMany(mappedBy = "college")
+	private List<Student> students;
+	
+	@ManyToMany(mappedBy = "colleges")
+	private List<Professor> professors;
 		
-
 	public College(String name, String place, String type) {
 		super();
 		this.name = name;

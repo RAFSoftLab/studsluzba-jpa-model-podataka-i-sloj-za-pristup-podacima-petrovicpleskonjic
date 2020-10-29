@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="HighSchool")
 @NamedQuery(name="HighSchool.findAll", query="SELECT hs FROM HighSchool hs")
-public class HighSchool{
+public class HighSchool {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,8 +28,6 @@ public class HighSchool{
 	
 	@OneToMany(mappedBy = "highSchool")
 	private List<Student> students;
-
-	
 
 	public HighSchool(String name, String place, String type, List<Student> students) {
 		super();

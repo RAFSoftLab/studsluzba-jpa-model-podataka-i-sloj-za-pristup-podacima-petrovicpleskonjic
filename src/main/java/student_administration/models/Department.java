@@ -38,8 +38,6 @@ public class Department implements Serializable {
 	private List<StudentIndex> studentIndexes;
 	
 	public Department() {}
-	
-	
 
 	public Department(String name, String shortName, int yearOfAccreditation, String title, int durationInSemesters,
 			TypeOfStudy typeOfStudy, List<Subject> subjects, List<StudentIndex> studentIndexes) {

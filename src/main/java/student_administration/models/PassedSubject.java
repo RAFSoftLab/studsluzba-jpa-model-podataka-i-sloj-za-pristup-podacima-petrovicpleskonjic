@@ -1,42 +1,51 @@
 package student_administration.models;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PassedSubject")
+@NamedQuery(name="PassedSubject.findAll", query="SELECT ps FROM PassedSubject ps")
 public class PassedSubject {
 
-	private HoldSubject holdSubject;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int passedSubjectId;
 	
-	private boolean admitt;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ListenSubject listenSubject;
+		
+	private boolean fromOtherCollege;
 	
-	private int ocena;
+	private int grade;
 
-	public PassedSubject(HoldSubject holdSubject, boolean admitt, int ocena) {
+	public PassedSubject(ListenSubject listenSubject, boolean fromOtherCollege, int grade) {
 		super();
-		this.holdSubject = holdSubject;
-		this.admitt = admitt;
-		this.ocena = ocena;
+		this.listenSubject = listenSubject;
+		this.fromOtherCollege = fromOtherCollege;
+		this.grade = grade;
 	}
 
-	public HoldSubject getHoldSubject() {
-		return holdSubject;
+	public boolean isFromOtherCollege() {
+		return fromOtherCollege;
 	}
 
-	public void setHoldSubject(HoldSubject holdSubject) {
-		this.holdSubject = holdSubject;
+	public void setFromOtherCollege(boolean fromOtherCollege) {
+		this.fromOtherCollege = fromOtherCollege;
 	}
 
-	public boolean isAdmitt() {
-		return admitt;
+	public int getGrade() {
+		return grade;
 	}
 
-	public void setAdmitt(boolean admitt) {
-		this.admitt = admitt;
-	}
-
-	public int getOcena() {
-		return ocena;
-	}
-
-	public void setOcena(int ocena) {
-		this.ocena = ocena;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	
 	

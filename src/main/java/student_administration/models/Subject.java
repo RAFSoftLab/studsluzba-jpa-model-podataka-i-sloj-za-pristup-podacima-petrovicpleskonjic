@@ -37,6 +37,9 @@ public class Subject{
 	
 	private int numberOfLectures;
 	
+	@OneToMany(mappedBy = "subject")
+    private List<HoldSubject> holdSubjectList;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Department department;
 	

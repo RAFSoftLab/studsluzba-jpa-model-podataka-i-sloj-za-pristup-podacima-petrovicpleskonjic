@@ -1,26 +1,35 @@
 package student_administration.models;
 
-public class WonPreExamObligations {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
-	private StudentIndex studentIndex;
+@Entity
+@Table(name="wonpreexamobligations")
+@NamedQuery(name="WonPreExamObligations.findAll", query="SELECT wpeo FROM WonPreExamObligations wpeo")
+public class WonPreExamObligations {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int wonPreExamObligationsId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ListenSubject listenSubject;
+		
 	private float points;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private PreExamObligations preExamObligations;
 
 	public WonPreExamObligations(StudentIndex studentIndex, float points, PreExamObligations preExamObligations) {
 		super();
-		this.studentIndex = studentIndex;
 		this.points = points;
 		this.preExamObligations = preExamObligations;
-	}
-
-	public StudentIndex getStudentIndex() {
-		return studentIndex;
-	}
-
-	public void setStudentIndex(StudentIndex studentIndex) {
-		this.studentIndex = studentIndex;
 	}
 
 	public float getPoints() {

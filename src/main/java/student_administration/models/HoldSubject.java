@@ -1,18 +1,50 @@
 package student_administration.models;
 
-public class HoldSubject {
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="holdsubject")
+@NamedQuery(name="HoldSubject.findAll", query="SELECT hs FROM HoldSubject hs")
+public class HoldSubject {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int holdSubjectId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Professor professor;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Subject subject;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private SchoolYear schoolYear;
+	
+	@OneToMany(mappedBy = "holdSubject")
+    private List<ListenSubject> listenSubjectList;
+	
+	@OneToMany(mappedBy = "holdSubject")
+	private List<PreExamObligations> preExamObligations;
 
 	public HoldSubject(Professor professor, Subject subject, SchoolYear schoolYear) {
 		super();
 		this.professor = professor;
 		this.subject = subject;
 		this.schoolYear = schoolYear;
+	}
+	
+	public int getHoldSubjectId() {
+		return holdSubjectId;
 	}
 
 	public Professor getProfessor() {

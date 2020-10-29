@@ -19,9 +19,7 @@ public class TitleOfProfessor{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int titleOfProfessorId;
-	
-	private String title;
-	
+		
 	private Date dateOfElection;
 	
 	private boolean active;
@@ -29,12 +27,14 @@ public class TitleOfProfessor{
 	private String scientificArea;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	private AcademicTitle academicTitle;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Professor professor;
 
 	public TitleOfProfessor(String title, Date dateOfElection, boolean active,
 			String scientificArea, Professor professor) {
 		super();
-		this.title = title;
 		this.dateOfElection = dateOfElection;
 		this.active = active;
 		this.scientificArea = scientificArea;
@@ -47,14 +47,6 @@ public class TitleOfProfessor{
 
 	public void setTitleOfProfessorId(int titleOfProfessorId) {
 		this.titleOfProfessorId = titleOfProfessorId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public Date getDateOfElection() {
