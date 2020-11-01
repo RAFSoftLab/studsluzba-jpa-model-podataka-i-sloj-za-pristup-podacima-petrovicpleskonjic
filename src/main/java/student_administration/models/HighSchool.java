@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="HighSchool")
+@Table(name="highschool")
 @NamedQuery(name="HighSchool.findAll", query="SELECT hs FROM HighSchool hs")
 public class HighSchool {
 
