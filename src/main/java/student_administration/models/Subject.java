@@ -46,6 +46,12 @@ public class Subject{
 	@OneToMany(mappedBy = "subject")
 	private List<Exam> exams;
 	
+	@ManyToOne
+	private EnrolledYear enrolledYear;
+	
+	@ManyToOne
+	private RenewedYear renewedYear;
+	
 	public Subject() {
 		
 	}

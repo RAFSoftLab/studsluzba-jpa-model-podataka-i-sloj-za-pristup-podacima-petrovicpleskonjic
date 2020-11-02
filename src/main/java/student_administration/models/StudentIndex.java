@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -43,6 +44,15 @@ public class StudentIndex {
 	
 	@ManyToMany(mappedBy = "studentIndexes")
 	private List<SchoolYear> schoolYears;
+	
+	@OneToMany(mappedBy = "index")
+	private List<Activity> studentActivities;
+	
+	@OneToOne(mappedBy = "newIndex")
+	private ChangeDepartment changeDepartmentNew;
+	
+	@OneToOne(mappedBy = "oldIndex")
+	private ChangeDepartment changeDepartmentOld;
 
 	public StudentIndex(int broj, boolean active, Date activeDate, Student student, Department department) {
 		super();

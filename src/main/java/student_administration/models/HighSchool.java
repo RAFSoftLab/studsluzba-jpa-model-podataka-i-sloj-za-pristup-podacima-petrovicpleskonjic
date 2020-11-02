@@ -27,14 +27,14 @@ public class HighSchool {
 	private String type;
 	
 	@OneToMany(mappedBy = "highSchool")
-	private List<Student> students;
+	private List<FirstEnroll> students;
 
 	public HighSchool(String name, String place, String type, List<Student> students) {
 		super();
 		this.name = name;
 		this.place = place;
 		this.type = type;
-		this.students = students;
+		//this.students = students;
 	}
 
 	public int getHighSchoolId() {
@@ -68,7 +68,7 @@ public class HighSchool {
 	public void setType(String type) {
 		this.type = type;
 	}
-
+/*
 	public List<Student> getStudents() {
 		return students;
 	}
@@ -76,7 +76,7 @@ public class HighSchool {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
-	
+*/
 	
 	
 	

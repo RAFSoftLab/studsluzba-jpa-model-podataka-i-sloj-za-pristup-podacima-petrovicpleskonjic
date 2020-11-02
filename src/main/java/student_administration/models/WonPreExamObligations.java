@@ -47,6 +47,23 @@ public class WonPreExamObligations {
 	public void setPreExamObligations(PreExamObligations preExamObligations) {
 		this.preExamObligations = preExamObligations;
 	}
+
+	public int getWonPreExamObligationsId() {
+		return wonPreExamObligationsId;
+	}
+
+	public void setWonPreExamObligationsId(int wonPreExamObligationsId) {
+		this.wonPreExamObligationsId = wonPreExamObligationsId;
+	}
+
+	public ListenSubject getListenSubject() {
+		return listenSubject;
+	}
+
+	public void setListenSubject(ListenSubject listenSubject) {
+		this.listenSubject = listenSubject;
+	}
+	
 	
 	
 }

@@ -61,8 +61,36 @@ public class ListenSubject {
 	public void setHoldSubject(HoldSubject holdSubject) {
 		this.holdSubject = holdSubject;
 	}
-	
-	
-	
-	
+
+	public float getWonPreExamObligations() {
+		float sum=0;
+		for(int i=0;i<wonPreExamObligations.size();i++) {
+			sum=sum + wonPreExamObligations.get(i).getPoints();
+		}
+		return sum;
+	}
+
+	public void setWonPreExamObligations(List<WonPreExamObligations> wonPreExamObligations) {
+		this.wonPreExamObligations = wonPreExamObligations;
+	}
+
+	public List<PassedSubject> getPassedSubjects() {
+		return passedSubjects;
+	}
+
+	public void setPassedSubjects(List<PassedSubject> passedSubjects) {
+		this.passedSubjects = passedSubjects;
+	}
+
+	public List<ExamRegistration> getExamRegistrations() {
+		return examRegistrations;
+	}
+
+	public void setExamRegistrations(List<ExamRegistration> examRegistrations) {
+		this.examRegistrations = examRegistrations;
+	}
+
+	public void setListenSubjectId(int listenSubjectId) {
+		this.listenSubjectId = listenSubjectId;
+	}
 }

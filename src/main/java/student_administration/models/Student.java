@@ -52,8 +52,8 @@ public class Student{
 	
 	private String issuedAnIDCard;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private HighSchool highSchool;
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//private HighSchool highSchool;
 	
 	@OneToMany(mappedBy= "student")
 	private List<StudentIndex> studentIndexes;
@@ -83,8 +83,8 @@ public class Student{
 		this.facultyMail = facultyMail;
 		this.iDNumber = iDNumber;
 		this.issuedAnIDCard = issuedAnIDCard;
-		this.highSchool = highSchool;
-		this.studentIndexes = studentIndexes;
+		//this.highSchool = highSchool;
+		//this.studentIndexes = studentIndexes;
 	}
 
 	public int getStudentId() {
@@ -155,9 +155,9 @@ public class Student{
 		return issuedAnIDCard;
 	}
 
-	public HighSchool getHighSchool() {
-		return highSchool;
-	}
+	//public HighSchool getHighSchool() {
+	//	return highSchool;
+	//}
 
 	public List<StudentIndex> getStudentIndexes() {
 		return studentIndexes;
@@ -231,9 +231,9 @@ public class Student{
 		this.issuedAnIDCard = issuedAnIDCard;
 	}
 
-	public void setHighSchool(HighSchool highSchool) {
-		this.highSchool = highSchool;
-	}
+	//public void setHighSchool(HighSchool highSchool) {
+	//	this.highSchool = highSchool;
+	//}
 
 	public void setIndexs(List<StudentIndex> studentIndexes) {
 		this.studentIndexes = studentIndexes;
