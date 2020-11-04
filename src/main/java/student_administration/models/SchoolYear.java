@@ -39,6 +39,8 @@ public class SchoolYear {
 	
 	@OneToMany(mappedBy = "schoolYear")
 	private List<RenewedYear> renewals;
+	
+	public SchoolYear() {}
 
 	public SchoolYear(String years, boolean active) {
 		super();

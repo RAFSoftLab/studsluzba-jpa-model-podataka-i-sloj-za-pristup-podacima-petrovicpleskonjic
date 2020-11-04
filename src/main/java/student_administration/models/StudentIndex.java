@@ -27,11 +27,10 @@ public class StudentIndex {
 	
 	private boolean active;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="studentId")
+	@ManyToOne
 	private Student student;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Department department;
 	
 	@OneToMany(mappedBy = "studentIndex")
@@ -43,7 +42,8 @@ public class StudentIndex {
 	@OneToMany(mappedBy = "studentIndex")
 	private List<Activity> studentActivities;
 	
-
+	public StudentIndex() {}
+	
 	public StudentIndex(int number, boolean active, Student student, Department department) {
 		super();
 		this.number = number;

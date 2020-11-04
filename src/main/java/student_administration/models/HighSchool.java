@@ -28,6 +28,8 @@ public class HighSchool {
 	
 	@OneToMany(mappedBy = "highSchool")
 	private List<FirstEnroll> enrollments;
+	
+	public HighSchool() {}
 
 	public HighSchool(String name, String place, String type) {
 		super();

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="titleofprofessor")
 @NamedQuery(name="TitleOfProfessor.findAll", query="SELECT tp FROM TitleOfProfessor tp")
-public class TitleOfProfessor{
+public class TitleOfProfessor {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,11 +26,13 @@ public class TitleOfProfessor{
 	
 	private String scientificArea;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private AcademicTitle academicTitle;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Professor professor;
+	
+	public TitleOfProfessor() {}
 
 	public TitleOfProfessor(String title, Date dateOfElection, boolean active,
 			String scientificArea, Professor professor) {

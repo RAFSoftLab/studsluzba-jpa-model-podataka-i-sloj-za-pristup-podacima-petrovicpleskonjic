@@ -18,6 +18,8 @@ public class ExamTaking extends Activity {
 	private float preExamPoints;
 	
 	private boolean canceled;
+	
+	public ExamTaking() {}
 
 	public ExamTaking(String note, StudentIndex index, float examPoints, boolean canceled) {
 		super(note, index);

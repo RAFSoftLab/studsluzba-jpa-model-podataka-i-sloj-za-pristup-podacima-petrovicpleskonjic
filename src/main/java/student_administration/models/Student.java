@@ -12,8 +12,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="student")
-//@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
+@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int studentId;
@@ -49,7 +50,6 @@ public class Student {
 	private String idCardNumber;
 	
 	private String idCardIssuer;
-	
 	
 	@OneToMany(mappedBy= "student")
 	private List<StudentIndex> studentIndexes;

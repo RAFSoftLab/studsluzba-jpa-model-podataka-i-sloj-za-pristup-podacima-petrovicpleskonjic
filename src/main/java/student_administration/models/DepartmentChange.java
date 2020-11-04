@@ -13,6 +13,7 @@ public class DepartmentChange extends Activity {
 	@OneToOne
 	private StudentIndex newIndex;
 	
+	public DepartmentChange() {}
 
 	public DepartmentChange(String note, StudentIndex currentIndex, StudentIndex newIndex) {
 		super(note, currentIndex);

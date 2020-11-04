@@ -21,13 +21,13 @@ public class HoldSubject {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int holdSubjectId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Professor professor;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Subject subject;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private SchoolYear schoolYear;
 	
 	@OneToMany(mappedBy = "holdSubject")
@@ -35,6 +35,8 @@ public class HoldSubject {
 	
 	@OneToMany(mappedBy = "holdSubject")
 	private List<PreExamObligations> preExamObligations;
+	
+	public HoldSubject() {}
 
 	public HoldSubject(Professor professor, Subject subject, SchoolYear schoolYear) {
 		super();

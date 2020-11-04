@@ -31,7 +31,9 @@ public abstract class Activity {
 	
 	@ManyToOne
 	protected StudentIndex studentIndex;
-
+	
+	public Activity() {}
+	
 	public Activity(String note, StudentIndex studentIndex) {
 		this.note = note;
 		this.studentIndex = studentIndex;

@@ -32,8 +32,10 @@ public class ExaminationPeriod{
 	@OneToMany(mappedBy = "examinationPeriod")
 	private List<Exam> exams;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private SchoolYear schoolYear;
+	
+	public ExaminationPeriod() {}
 
 	public ExaminationPeriod(String name, Date startDate, Date endDate, List<Exam> exams) {
 		super();

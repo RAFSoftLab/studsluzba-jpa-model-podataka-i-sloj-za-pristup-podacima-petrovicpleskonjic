@@ -10,23 +10,24 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//vrsta studija,trazi se da ima sifarnik
 @Entity
 @Table(name="typeofstudy")
 @NamedQuery(name="TypeOfStudy.findAll", query="SELECT ts FROM TypeOfStudy ts")
-public class TypeOfStudy{
+public class TypeOfStudy {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int typeOfStudyId;
 	
-	private String name;	//OAS - osnovne akademske studije, MAS - master akademske studije ...
+	private String name;
 	
 	private String shortName;
 	
 	@OneToMany(mappedBy="typeOfStudy")
-	private List<Department> departments;	//jer npr OAS moze da ima i Racunarske nauke i Racunarsko inzenjerstvo
+	private List<Department> departments;
 
+	public TypeOfStudy() {}
+	
 	public TypeOfStudy(String name, String shortName, List<Department> departments) {
 		super();
 		this.name = name;

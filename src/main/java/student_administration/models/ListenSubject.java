@@ -22,10 +22,10 @@ public class ListenSubject {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int listenSubjectId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private StudentIndex studentIndex;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private HoldSubject holdSubject;
 	
 	@ManyToOne
@@ -42,6 +42,8 @@ public class ListenSubject {
 	
 	@OneToOne(mappedBy = "listenSubject")
 	private PassedSubject passedSubject;
+	
+	public ListenSubject() {}
 
 	public ListenSubject(StudentIndex studentIndex, HoldSubject holdSubject) {
 		super();

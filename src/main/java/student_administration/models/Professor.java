@@ -42,6 +42,8 @@ public class Professor{
 	@ManyToMany()
 	private List<College> colleges;
 
+	public Professor() {}
+	
 	public Professor(String name, String surname, String middlename, String email,
 			List<TitleOfProfessor> titles) {
 		super();

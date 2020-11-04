@@ -18,13 +18,15 @@ public class WonPreExamObligations {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int wonPreExamObligationsId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private ListenSubject listenSubject;
 		
 	private float points;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private PreExamObligations preExamObligations;
+	
+	public WonPreExamObligations() {}
 
 	public WonPreExamObligations(StudentIndex studentIndex, float points, PreExamObligations preExamObligations) {
 		super();

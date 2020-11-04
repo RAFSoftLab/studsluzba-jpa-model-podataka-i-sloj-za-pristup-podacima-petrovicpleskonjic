@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="subject")
 @NamedQuery(name="Subject.findAll", query="SELECT su FROM Subject su")
-public class Subject{
+public class Subject {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,15 +40,13 @@ public class Subject{
 	@OneToMany(mappedBy = "subject")
     private List<HoldSubject> holdSubjectList;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Department department;
 	
 	@OneToMany(mappedBy = "subject")
 	private List<Exam> exams;
 	
-	public Subject() {
-		
-	}
+	public Subject() {}
 	
 	public Subject(int code, String name, String description, int espb, int semester,
 			int numberOfExercises, int numberOfLectures, Department department) {

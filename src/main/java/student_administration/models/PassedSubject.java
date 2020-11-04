@@ -23,6 +23,8 @@ public class PassedSubject {
 	private boolean fromOtherCollege;
 	
 	private int grade;
+	
+	public PassedSubject() {}
 
 	public PassedSubject(ListenSubject listenSubject, boolean fromOtherCollege, int grade) {
 		super();

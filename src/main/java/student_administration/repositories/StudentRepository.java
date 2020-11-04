@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import student_administration.models.Student;
+import student_administration.models.EnrolledYear;
 import student_administration.models.PassedSubject;
+import student_administration.models.RenewedYear;
 
 public interface StudentRepository extends CrudRepository<Student, Integer> {
 	
@@ -14,8 +16,24 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 			+ "(SELECT index.student.studentId FROM StudentIndex index WHERE index.number = :indexNumber)")
 	Student getStudentByIndexNumber(int indexNumber);
 	
-    @Query("SELECT ps FROM PassedSubject ps WHERE ps.passedSubjectId = "
-    		+ "(SELECT ls.passedSubject.passedSubjectId from ListenSubject ls WHERE ls.studentIndex.studentIndexId = "
+    @Query("SELECT ps FROM PassedSubject ps WHERE ps.passedSubjectId IN "
+    		+ "(SELECT ls.passedSubject.passedSubjectId FROM ListenSubject ls WHERE ls.studentIndex.studentIndexId = "
     		+ "(SELECT index.studentIndexId FROM StudentIndex index WHERE index.number = :indexNumber))")
     List<PassedSubject> getPassedSubjectsByIndex(int indexNumber);
+    
+    @Query("SELECT ey FROM EnrolledYear ey WHERE ey.studentIndex IN "
+    		+ "(SELECT index.studentIndexId FROM StudentIndex index WHERE index.number = :indexNumber)")
+    List<EnrolledYear> getEnrolledYearsByIndex(int indexNumber);
+    
+    @Query("SELECT ry FROM RenewedYear ry WHERE ry.studentIndex IN "
+    		+ "(SELECT index.studentIndexId FROM StudentIndex index WHERE index.number = :indexNumber)")
+    List<RenewedYear> getRenewedYearsByIndex(int indexNumber);
+    
+    @Query("SELECT s FROM Student s WHERE lower(s.name) LIKE lower(:name) OR lower(s.surname) LIKE lower(:surname)")
+    List<Student> getStudentsByNameOrSurname(String name, String surname);
+    
+    @Query("SELECT s FROM Student s WHERE s.studentId IN "
+    		+ "(SELECT index.student.studentId FROM StudentIndex index WHERE index.studentIndexId IN "
+    		+ "(SELECT fe.studentIndex.studentIndexId FROM FirstEnroll fe WHERE fe.highSchool.highSchoolId = :highSchoolId))")
+    List<Student> getStudentsByHighSchool(int highSchoolId);
 }

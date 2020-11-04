@@ -20,15 +20,15 @@ public class Department implements Serializable {
 
 	private String name;
 
-	private String shortName;	//RN,RI...
+	private String shortName;
 	
 	private int yearOfAccreditation;
 	
-	private String title;	//zvanje koje se dobija po zavrsetkou
+	private String title;
 	
-	private int durationInSemesters;	//koliko semestara traje
+	private int durationInSemesters;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private TypeOfStudy typeOfStudy;
 	
 	@OneToMany(mappedBy="department")

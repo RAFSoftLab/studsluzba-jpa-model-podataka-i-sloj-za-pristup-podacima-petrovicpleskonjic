@@ -21,15 +21,17 @@ public class PreExamObligations {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int preExamObligationsId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private HoldSubject holdSubject;
 
-	private String type;	//test,kolokvijum,projekat...
+	private String type;
 	
 	private float maxPoints;
 	
 	@OneToMany(mappedBy = "preExamObligations")
     private List<WonPreExamObligations> wonPreExamObligations;
+	
+	public PreExamObligations() {}
 	
 	public PreExamObligations(HoldSubject holdSubject, String type, float maxPoints) {
 		super();

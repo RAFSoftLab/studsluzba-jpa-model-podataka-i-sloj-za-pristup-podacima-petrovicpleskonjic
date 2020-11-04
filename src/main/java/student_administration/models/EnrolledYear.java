@@ -14,11 +14,13 @@ import javax.persistence.Table;
 @NamedQuery(name="EnrolledYear.findAll", query="SELECT ey FROM EnrolledYear ey")
 public class EnrolledYear extends Activity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private SchoolYear schoolYear;
 	
 	@OneToMany(mappedBy = "enrolledYear")
 	private List<ListenSubject> transferedSubjects;
+	
+	public EnrolledYear() {}
 
 	public EnrolledYear(String note, StudentIndex index, SchoolYear schoolYear, List<ListenSubject> transferedSubjects) {
 		super(note, index);
@@ -42,6 +44,9 @@ public class EnrolledYear extends Activity {
 	public void setTransferedSubjects(List<ListenSubject> transferedSubjects) {
 		this.transferedSubjects = transferedSubjects;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "EnrolledYear [schoolYear=" + schoolYear + "]";
+	}
 }

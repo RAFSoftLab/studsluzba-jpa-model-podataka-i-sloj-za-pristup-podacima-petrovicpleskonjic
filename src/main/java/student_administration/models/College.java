@@ -30,6 +30,8 @@ public class College {
 	
 	@ManyToMany(mappedBy = "colleges")
 	private List<Professor> professors;
+	
+	public College() {}
 		
 	public College(String name, String place, String type) {
 		super();

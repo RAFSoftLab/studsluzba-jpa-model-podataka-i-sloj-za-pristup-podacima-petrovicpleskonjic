@@ -12,13 +12,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="renewedyear")
 @NamedQuery(name="RenewedYear.findAll", query="SELECT ry FROM RenewedYear ry")
-public class RenewedYear extends Activity{
+public class RenewedYear extends Activity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private SchoolYear schoolYear;
 	
 	@OneToMany(mappedBy = "renewedYear")
 	private List<ListenSubject> renewedSubjects;
+	
+	public RenewedYear() {}
 
 	public RenewedYear(String note, StudentIndex index, SchoolYear schoolYear, List<ListenSubject> renewedSubjects) {
 		super(note, index);
@@ -42,6 +44,9 @@ public class RenewedYear extends Activity{
 	public void setRenewedSubjects(List<ListenSubject> renewedSubjects) {
 		this.renewedSubjects = renewedSubjects;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "RenewedYear [schoolYear=" + schoolYear + "]";
+	}
 }

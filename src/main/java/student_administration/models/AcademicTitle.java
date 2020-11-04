@@ -24,7 +24,9 @@ public class AcademicTitle {
 	
 	private String title;
 	
-		public AcademicTitle(String title) {
+	public AcademicTitle() {}
+	
+	public AcademicTitle(String title) {
 		this.title = title;
 	}
 

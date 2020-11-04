@@ -15,8 +15,10 @@ public class FirstEnroll extends Activity {
 	
 	private float highSchoolPoints;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private HighSchool highSchool;
+	
+	public FirstEnroll() {}
 
 	public FirstEnroll(String note, StudentIndex index, float pointsFromEntranceExam, float highSchoolPoints, HighSchool highSchool) {
 		super(note, index);

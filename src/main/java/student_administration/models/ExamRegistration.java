@@ -12,11 +12,13 @@ import javax.persistence.Table;
 @NamedQuery(name="ExamRegistration.findAll", query="SELECT er FROM ExamRegistration er")
 public class ExamRegistration extends Activity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private ListenSubject listenSubject;
 	
 	@OneToOne(mappedBy = "examRegistration")
 	private ExamTaking examTaking;
+	
+	public ExamRegistration() {}
 
 	public ExamRegistration(String note, StudentIndex index, ListenSubject listenSubject) {
 		super(note, index);

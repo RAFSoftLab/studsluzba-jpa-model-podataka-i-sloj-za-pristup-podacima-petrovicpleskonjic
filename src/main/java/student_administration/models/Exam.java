@@ -26,14 +26,16 @@ public class Exam{
 	
 	private boolean locked;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Subject subject;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private ExaminationPeriod examinationPeriod;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Professor professor;
+	
+	public Exam() {}
 
 	public Exam(Date examDate, int hourExam, boolean locked, Subject subject, ExaminationPeriod examinationPeriod,
 			Professor professor) {
