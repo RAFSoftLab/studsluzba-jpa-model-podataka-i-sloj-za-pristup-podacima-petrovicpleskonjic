@@ -12,9 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
-//@Table(name="activity")
-//@NamedQuery(name="Activity.findAll", query="SELECT act FROM Activity act")
+@Table(name="activity")
+@NamedQuery(name="Activity.findAll", query="SELECT act FROM Activity act")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
 	
@@ -24,8 +26,14 @@ public abstract class Activity {
 	
 	protected String note;
 	
+	@CreatedDate
 	protected Date date;
 	
 	@ManyToOne
-	protected StudentIndex index;
+	protected StudentIndex studentIndex;
+
+	public Activity(String note, StudentIndex studentIndex) {
+		this.note = note;
+		this.studentIndex = studentIndex;
+	}
 }

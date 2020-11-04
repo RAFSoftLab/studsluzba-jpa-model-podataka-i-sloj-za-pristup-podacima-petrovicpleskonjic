@@ -1,12 +1,11 @@
 package student_administration.models;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +17,7 @@ public class PassedSubject {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int passedSubjectId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	private ListenSubject listenSubject;
 		
 	private boolean fromOtherCollege;
@@ -47,6 +46,9 @@ public class PassedSubject {
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "PassedSubject [listenSubject=" + listenSubject + ", grade=" + grade + "]";
+	}
 }

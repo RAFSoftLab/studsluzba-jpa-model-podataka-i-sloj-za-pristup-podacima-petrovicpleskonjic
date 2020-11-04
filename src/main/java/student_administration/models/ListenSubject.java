@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,14 +28,20 @@ public class ListenSubject {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private HoldSubject holdSubject;
 	
+	@ManyToOne
+	private EnrolledYear enrolledYear;
+	
+	@ManyToOne
+	private RenewedYear renewedYear;
+	
 	@OneToMany(mappedBy = "listenSubject")
     private List<WonPreExamObligations> wonPreExamObligations;
 	
 	@OneToMany(mappedBy = "listenSubject")
-	private List<PassedSubject> passedSubjects;
-	
-	@OneToMany(mappedBy = "listenSubject")
 	private List<ExamRegistration> examRegistrations;
+	
+	@OneToOne(mappedBy = "listenSubject")
+	private PassedSubject passedSubject;
 
 	public ListenSubject(StudentIndex studentIndex, HoldSubject holdSubject) {
 		super();
@@ -74,14 +81,6 @@ public class ListenSubject {
 		this.wonPreExamObligations = wonPreExamObligations;
 	}
 
-	public List<PassedSubject> getPassedSubjects() {
-		return passedSubjects;
-	}
-
-	public void setPassedSubjects(List<PassedSubject> passedSubjects) {
-		this.passedSubjects = passedSubjects;
-	}
-
 	public List<ExamRegistration> getExamRegistrations() {
 		return examRegistrations;
 	}
@@ -92,5 +91,10 @@ public class ListenSubject {
 
 	public void setListenSubjectId(int listenSubjectId) {
 		this.listenSubjectId = listenSubjectId;
+	}
+
+	@Override
+	public String toString() {
+		return "ListenSubject [holdSubject=" + holdSubject + "]";
 	}
 }

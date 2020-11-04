@@ -20,6 +20,9 @@ public class SchoolYear {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int schoolyearId;
 	
+	// Example: 2020/2021
+	private String years;
+	
 	private boolean active;
 	
 	@OneToMany(mappedBy = "schoolYear")
@@ -30,9 +33,16 @@ public class SchoolYear {
 	
 	@ManyToMany()
 	private List<StudentIndex> studentIndexes;
+	
+	@OneToMany(mappedBy = "schoolYear")
+	private List<EnrolledYear> enrollments;
+	
+	@OneToMany(mappedBy = "schoolYear")
+	private List<RenewedYear> renewals;
 
-	public SchoolYear(boolean active) {
+	public SchoolYear(String years, boolean active) {
 		super();
+		this.years = years;
 		this.active = active;
 	}
 
@@ -67,6 +77,9 @@ public class SchoolYear {
 	public void setStudentIndexes(List<StudentIndex> studentIndexes) {
 		this.studentIndexes = studentIndexes;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "SchoolYear [years=" + years + ", active=" + active + "]";
+	}
 }

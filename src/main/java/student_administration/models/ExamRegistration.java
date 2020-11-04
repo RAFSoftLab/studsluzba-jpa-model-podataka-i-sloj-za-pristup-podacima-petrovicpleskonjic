@@ -1,7 +1,5 @@
 package student_administration.models;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -12,19 +10,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="examregistration")
 @NamedQuery(name="ExamRegistration.findAll", query="SELECT er FROM ExamRegistration er")
-public class ExamRegistration extends Activity{
+public class ExamRegistration extends Activity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private ListenSubject listenSubject;
 	
-	private Date date;
-	
 	@OneToOne(mappedBy = "examRegistration")
 	private ExamTaking examTaking;
 
-	public ExamRegistration(ListenSubject listenSubject, Date date) {
+	public ExamRegistration(String note, StudentIndex index, ListenSubject listenSubject) {
+		super(note, index);
+		
 		this.listenSubject = listenSubject;
-		this.date = date;
 	}
 
 	public ListenSubject getListenSubject() {
@@ -34,15 +31,4 @@ public class ExamRegistration extends Activity{
 	public void setListenSubject(ListenSubject listenSubject) {
 		this.listenSubject = listenSubject;
 	}
-
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
-	
 }

@@ -107,7 +107,9 @@ public class Professor{
 	public void setTitles(List<TitleOfProfessor> titles) {
 		this.titles = titles;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Professor [name=" + name + ", surname=" + surname + "]";
+	}
 }

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="firstenroll")
 @NamedQuery(name="FirstEnroll.findAll", query="SELECT fe FROM FirstEnroll fe")
-public class FirstEnroll extends Activity{
+public class FirstEnroll extends Activity {
 
 	private float pointsFromEntranceExam;
 	
@@ -18,8 +18,8 @@ public class FirstEnroll extends Activity{
 	@ManyToOne(fetch = FetchType.LAZY)
 	private HighSchool highSchool;
 
-	public FirstEnroll(float pointsFromEntranceExam, float highSchoolPoints, HighSchool highSchool) {
-		super();
+	public FirstEnroll(String note, StudentIndex index, float pointsFromEntranceExam, float highSchoolPoints, HighSchool highSchool) {
+		super(note, index);
 		this.pointsFromEntranceExam = pointsFromEntranceExam;
 		this.highSchoolPoints = highSchoolPoints;
 		this.highSchool = highSchool;

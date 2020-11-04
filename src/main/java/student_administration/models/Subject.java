@@ -46,12 +46,6 @@ public class Subject{
 	@OneToMany(mappedBy = "subject")
 	private List<Exam> exams;
 	
-	@ManyToOne
-	private EnrolledYear enrolledYear;
-	
-	@ManyToOne
-	private RenewedYear renewedYear;
-	
 	public Subject() {
 		
 	}
@@ -148,7 +142,9 @@ public class Subject{
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Subject [code=" + code + ", name=" + name + "]";
+	}
 }

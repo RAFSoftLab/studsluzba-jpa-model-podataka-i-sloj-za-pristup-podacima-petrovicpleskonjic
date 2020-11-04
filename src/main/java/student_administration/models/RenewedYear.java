@@ -3,6 +3,8 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -12,30 +14,32 @@ import javax.persistence.Table;
 @NamedQuery(name="RenewedYear.findAll", query="SELECT ry FROM RenewedYear ry")
 public class RenewedYear extends Activity{
 
-	private int renewedYear;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private SchoolYear schoolYear;
 	
 	@OneToMany(mappedBy = "renewedYear")
-	private List<Subject> renewedSubjects;
+	private List<ListenSubject> renewedSubjects;
 
-	public RenewedYear(int renewedYear, List<Subject> renewedSubjects) {
-		super();
-		this.renewedYear = renewedYear;
+	public RenewedYear(String note, StudentIndex index, SchoolYear schoolYear, List<ListenSubject> renewedSubjects) {
+		super(note, index);
+		
+		this.schoolYear = schoolYear;
 		this.renewedSubjects = renewedSubjects;
 	}
 
-	public int getRenewedYear() {
-		return renewedYear;
+	public SchoolYear getSchoolYear() {
+		return schoolYear;
 	}
 
-	public void setRenewedYear(int renewedYear) {
-		this.renewedYear = renewedYear;
+	public void setSchoolYear(SchoolYear schoolYear) {
+		this.schoolYear = schoolYear;
 	}
 
-	public List<Subject> getRenewedSubjects() {
+	public List<ListenSubject> getRenewedSubjects() {
 		return renewedSubjects;
 	}
 
-	public void setRenewedSubjects(List<Subject> renewedSubjects) {
+	public void setRenewedSubjects(List<ListenSubject> renewedSubjects) {
 		this.renewedSubjects = renewedSubjects;
 	}
 	

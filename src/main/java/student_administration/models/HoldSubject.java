@@ -70,6 +70,9 @@ public class HoldSubject {
 	public void setSchoolYear(SchoolYear schoolYear) {
 		this.schoolYear = schoolYear;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "HoldSubject [professor=" + professor + ", subject=" + subject + ", schoolYear=" + schoolYear + "]";
+	}
 }

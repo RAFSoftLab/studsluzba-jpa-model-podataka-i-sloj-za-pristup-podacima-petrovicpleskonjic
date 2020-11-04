@@ -12,10 +12,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="student")
-@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
-public class Student{
-	private static final long serialVersionUID = 1L;
-
+//@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
+public class Student {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int studentId;
@@ -38,7 +36,7 @@ public class Student{
 	
 	private String nationality;
 	
-	private String genter;
+	private String gender;
 	
 	private String address;
 	
@@ -48,24 +46,20 @@ public class Student{
 	
 	private String facultyMail;
 	
-	private String iDNumber;
+	private String idCardNumber;
 	
-	private String issuedAnIDCard;
+	private String idCardIssuer;
 	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//private HighSchool highSchool;
 	
 	@OneToMany(mappedBy= "student")
 	private List<StudentIndex> studentIndexes;
-	
-	//private List<PassedSubject> passedSubjects;
-	
+		
 	public Student() {}
 	
 	public Student(int enrollementYear, String name, String surname, String middlename, int jmbg,
 			Date birthday, String placeOfBirth, String countryOfBirth, String nationality, String genter,
-			String address, String mobileNumber, String email, String facultyMail, String iDNumber,
-			String issuedAnIDCard, HighSchool highSchool, Department department, List<StudentIndex> indexs) {
+			String address, String mobileNumber, String email, String facultyMail, String idCardNumber,
+			String idCardIssuer, HighSchool highSchool, Department department, List<StudentIndex> studentIndexes) {
 		super();
 		this.enrollementYear = enrollementYear;
 		this.name = name;
@@ -76,15 +70,14 @@ public class Student{
 		this.placeOfBirth = placeOfBirth;
 		this.countryOfBirth = countryOfBirth;
 		this.nationality = nationality;
-		this.genter = genter;
+		this.gender = genter;
 		this.address = address;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.facultyMail = facultyMail;
-		this.iDNumber = iDNumber;
-		this.issuedAnIDCard = issuedAnIDCard;
-		//this.highSchool = highSchool;
-		//this.studentIndexes = studentIndexes;
+		this.idCardNumber = idCardNumber;
+		this.idCardIssuer = idCardIssuer;
+		this.studentIndexes = studentIndexes;
 	}
 
 	public int getStudentId() {
@@ -127,8 +120,8 @@ public class Student{
 		return nationality;
 	}
 
-	public String getGenter() {
-		return genter;
+	public String getGender() {
+		return gender;
 	}
 
 	public String getAddress() {
@@ -148,16 +141,12 @@ public class Student{
 	}
 
 	public String getiDNumber() {
-		return iDNumber;
+		return idCardNumber;
 	}
 
 	public String getIssuedAnIDCard() {
-		return issuedAnIDCard;
+		return idCardIssuer;
 	}
-
-	//public HighSchool getHighSchool() {
-	//	return highSchool;
-	//}
 
 	public List<StudentIndex> getStudentIndexes() {
 		return studentIndexes;
@@ -203,8 +192,8 @@ public class Student{
 		this.nationality = nationality;
 	}
 
-	public void setGenter(String genter) {
-		this.genter = genter;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public void setAddress(String address) {
@@ -224,29 +213,20 @@ public class Student{
 	}
 
 	public void setiDNumber(String iDNumber) {
-		this.iDNumber = iDNumber;
+		this.idCardNumber = iDNumber;
 	}
 
 	public void setIssuedAnIDCard(String issuedAnIDCard) {
-		this.issuedAnIDCard = issuedAnIDCard;
+		this.idCardIssuer = issuedAnIDCard;
 	}
-
-	//public void setHighSchool(HighSchool highSchool) {
-	//	this.highSchool = highSchool;
-	//}
 
 	public void setIndexs(List<StudentIndex> studentIndexes) {
 		this.studentIndexes = studentIndexes;
 	}
 
-//	public List<PassedSubject> getPassedSubjects() {
-//		return passedSubjects;
-//	}
-//
-//	public void setPassedSubjects(List<PassedSubject> passedSubjects) {
-//		this.passedSubjects = passedSubjects;
-//	}
-	
-	
+	@Override
+	public String toString() {
+		return "Student [enrollementYear=" + enrollementYear + ", name=" + name + ", surname=" + surname + "]";
+	}
 
 }

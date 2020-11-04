@@ -3,6 +3,8 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -10,33 +12,35 @@ import javax.persistence.Table;
 @Entity
 @Table(name="enrolledyear")
 @NamedQuery(name="EnrolledYear.findAll", query="SELECT ey FROM EnrolledYear ey")
-public class EnrolledYear extends Activity{
+public class EnrolledYear extends Activity {
 
-	private int enrolledYear;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private SchoolYear schoolYear;
 	
 	@OneToMany(mappedBy = "enrolledYear")
-	private List<Subject> enrolledSubjects;
+	private List<ListenSubject> transferedSubjects;
 
-	public EnrolledYear(int enrolledYear, List<Subject> enrolledSubjects) {
-		super();
-		this.enrolledYear = enrolledYear;
-		this.enrolledSubjects = enrolledSubjects;
+	public EnrolledYear(String note, StudentIndex index, SchoolYear schoolYear, List<ListenSubject> transferedSubjects) {
+		super(note, index);
+		
+		this.schoolYear = schoolYear;
+		this.transferedSubjects = transferedSubjects;
 	}
 
-	public int getEnrolledYear() {
-		return enrolledYear;
+	public SchoolYear getEnrolledYear() {
+		return schoolYear;
 	}
 
-	public void setEnrolledYear(int enrolledYear) {
-		this.enrolledYear = enrolledYear;
+	public void setSchoolYear(SchoolYear schoolYear) {
+		this.schoolYear = schoolYear;
 	}
 
-	public List<Subject> getEnrolledSubjects() {
-		return enrolledSubjects;
+	public List<ListenSubject> getTransferedSubjects() {
+		return transferedSubjects;
 	}
 
-	public void setEnrolledSubjects(List<Subject> enrolledSubjects) {
-		this.enrolledSubjects = enrolledSubjects;
+	public void setTransferedSubjects(List<ListenSubject> transferedSubjects) {
+		this.transferedSubjects = transferedSubjects;
 	}
 	
 	

@@ -2,14 +2,13 @@ package student_administration.models;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="examtaking")
 @NamedQuery(name="ExamTaking.findAll", query="SELECT et FROM ExamTaking et")
-public class ExamTaking extends Activity{
+public class ExamTaking extends Activity {
 
 	@OneToOne
 	private ExamRegistration examRegistration;
@@ -18,10 +17,11 @@ public class ExamTaking extends Activity{
 	
 	private float preExamPoints;
 	
-	private boolean canceled;		//da li je ispit ponisten
+	private boolean canceled;
 
-	public ExamTaking(float examPoints, boolean canceled) {
-		super();
+	public ExamTaking(String note, StudentIndex index, float examPoints, boolean canceled) {
+		super(note, index);
+		
 		this.examPoints = examPoints;
 		this.preExamPoints = examRegistration.getListenSubject().getWonPreExamObligations();
 		this.canceled = canceled;
