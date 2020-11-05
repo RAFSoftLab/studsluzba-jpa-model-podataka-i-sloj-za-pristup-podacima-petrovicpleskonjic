@@ -3,10 +3,10 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +22,10 @@ public class HoldSubject {
 	private int holdSubjectId;
 
 	@ManyToOne
-	private Professor professor;
+	private Professor professorOwner;
+	
+	@ManyToMany
+	private List<Professor> lecturers;
 	
 	@ManyToOne
 	private Subject subject;
@@ -36,11 +39,14 @@ public class HoldSubject {
 	@OneToMany(mappedBy = "holdSubject")
 	private List<PreExamObligations> preExamObligations;
 	
+	@OneToMany(mappedBy = "holdSubject")
+	private List<Exam> exams;
+	
 	public HoldSubject() {}
 
-	public HoldSubject(Professor professor, Subject subject, SchoolYear schoolYear) {
+	public HoldSubject(Professor professorOwner, Subject subject, SchoolYear schoolYear) {
 		super();
-		this.professor = professor;
+		this.professorOwner = professorOwner;
 		this.subject = subject;
 		this.schoolYear = schoolYear;
 	}
@@ -49,12 +55,12 @@ public class HoldSubject {
 		return holdSubjectId;
 	}
 
-	public Professor getProfessor() {
-		return professor;
+	public Professor getProfessorOwner() {
+		return professorOwner;
 	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	
+	public void setProfessorOwner(Professor professorOwner) {
+		this.professorOwner = professorOwner;
 	}
 
 	public Subject getSubject() {
@@ -75,6 +81,6 @@ public class HoldSubject {
 
 	@Override
 	public String toString() {
-		return "HoldSubject [professor=" + professor + ", subject=" + subject + ", schoolYear=" + schoolYear + "]";
+		return "HoldSubject [professorOwner=" + professorOwner + ", subject=" + subject + ", schoolYear=" + schoolYear + "]";
 	}
 }

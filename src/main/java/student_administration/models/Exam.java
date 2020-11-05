@@ -1,20 +1,21 @@
 package student_administration.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="exam")
 @NamedQuery(name="Exam.findAll", query="SELECT e FROM Exam e")
-public class Exam{
+public class Exam {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,12 +23,12 @@ public class Exam{
 	
 	private Date examDate;
 	
-	private int hourExam;	//kako predstaviti vreme ispita???
+	private int hourExam;
 	
 	private boolean locked;
 	
 	@ManyToOne
-	private Subject subject;
+	private HoldSubject holdSubject;
 	
 	@ManyToOne
 	private ExaminationPeriod examinationPeriod;
@@ -35,15 +36,21 @@ public class Exam{
 	@ManyToOne
 	private Professor professor;
 	
+	@OneToMany(mappedBy="exam")
+	List<ExamRegistration> examRegistrations;
+	
+	@OneToMany(mappedBy="exam")
+	List<PassedSubject> passedSubjects;
+	
 	public Exam() {}
 
-	public Exam(Date examDate, int hourExam, boolean locked, Subject subject, ExaminationPeriod examinationPeriod,
+	public Exam(Date examDate, int hourExam, boolean locked, HoldSubject holdSubject, ExaminationPeriod examinationPeriod,
 			Professor professor) {
 		super();
 		this.examDate = examDate;
 		this.hourExam = hourExam;
 		this.locked = locked;
-		this.subject = subject;
+		this.holdSubject = holdSubject;
 		this.examinationPeriod = examinationPeriod;
 		this.professor = professor;
 	}
@@ -79,13 +86,13 @@ public class Exam{
 	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
-
-	public Subject getSubject() {
-		return subject;
+	
+	public HoldSubject getHoldSubject() {
+		return holdSubject;
 	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	
+	public void setHoldSubject(HoldSubject holdSubject) {
+		this.holdSubject = holdSubject;
 	}
 
 	public ExaminationPeriod getExaminationPeriod() {

@@ -1,7 +1,6 @@
 package student_administration.models;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -15,14 +14,18 @@ public class ExamRegistration extends Activity {
 	@ManyToOne
 	private ListenSubject listenSubject;
 	
+	@ManyToOne
+	private Exam exam;
+	
 	@OneToOne(mappedBy = "examRegistration")
 	private ExamTaking examTaking;
 	
 	public ExamRegistration() {}
 
-	public ExamRegistration(String note, StudentIndex index, ListenSubject listenSubject) {
+	public ExamRegistration(String note, StudentIndex index, Exam exam, ListenSubject listenSubject) {
 		super(note, index);
 		
+		this.exam = exam;
 		this.listenSubject = listenSubject;
 	}
 
@@ -32,5 +35,13 @@ public class ExamRegistration extends Activity {
 
 	public void setListenSubject(ListenSubject listenSubject) {
 		this.listenSubject = listenSubject;
+	}
+
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 }

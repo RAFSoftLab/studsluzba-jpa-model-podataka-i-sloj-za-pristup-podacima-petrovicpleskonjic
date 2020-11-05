@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="examinationperiod")
 @NamedQuery(name="ExaminationPeriod.findAll", query="SELECT ep FROM ExaminationPeriod ep")
-public class ExaminationPeriod{
+public class ExaminationPeriod {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

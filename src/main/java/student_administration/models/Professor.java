@@ -3,12 +3,10 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,7 +28,7 @@ public class Professor{
 	
 	private String email;
 	
-	@OneToMany(mappedBy = "professor")
+	@OneToMany(mappedBy = "professorOwner")
     private List<HoldSubject> holdSubjectList;
 	
 	@OneToMany(mappedBy = "professor")
@@ -39,8 +37,11 @@ public class Professor{
 	@OneToMany(mappedBy = "professor")
 	private List<Exam> exams;
 	
-	@ManyToMany()
+	@ManyToMany
 	private List<College> colleges;
+	
+	@ManyToMany(mappedBy = "lecturers")
+	private List<HoldSubject> givingLecturesList;
 
 	public Professor() {}
 	

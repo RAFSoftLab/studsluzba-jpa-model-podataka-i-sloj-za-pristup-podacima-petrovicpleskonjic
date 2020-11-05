@@ -1,7 +1,6 @@
 package student_administration.models;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +27,8 @@ public class WonPreExamObligations {
 	
 	public WonPreExamObligations() {}
 
-	public WonPreExamObligations(StudentIndex studentIndex, float points, PreExamObligations preExamObligations) {
-		super();
+	public WonPreExamObligations(ListenSubject listenSubject, float points, PreExamObligations preExamObligations) {
+		this.listenSubject = listenSubject;
 		this.points = points;
 		this.preExamObligations = preExamObligations;
 	}

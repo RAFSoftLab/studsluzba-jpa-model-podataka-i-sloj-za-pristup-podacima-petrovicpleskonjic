@@ -20,8 +20,9 @@ public class SchoolYear {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int schoolyearId;
 	
-	// Example: 2020/2021
-	private String years;
+	private int firstYear;
+	
+	private int secondYear;
 	
 	private boolean active;
 	
@@ -42,9 +43,10 @@ public class SchoolYear {
 	
 	public SchoolYear() {}
 
-	public SchoolYear(String years, boolean active) {
+	public SchoolYear(int firstYear, int secondYear, boolean active) {
 		super();
-		this.years = years;
+		this.firstYear = firstYear;
+		this.secondYear = secondYear;
 		this.active = active;
 	}
 
@@ -79,9 +81,17 @@ public class SchoolYear {
 	public void setStudentIndexes(List<StudentIndex> studentIndexes) {
 		this.studentIndexes = studentIndexes;
 	}
+	
+	public int getFirstYear() {
+		return firstYear;
+	}
+	
+	public int getSecondYear() {
+		return secondYear;
+	}
 
 	@Override
 	public String toString() {
-		return "SchoolYear [years=" + years + ", active=" + active + "]";
+		return "SchoolYear [firstYear=" + firstYear + ", secondYear=" + secondYear + ", active=" + active + "]";
 	}
 }

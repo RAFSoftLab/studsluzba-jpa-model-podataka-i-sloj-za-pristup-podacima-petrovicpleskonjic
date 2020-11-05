@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,6 +20,9 @@ public class PassedSubject {
 	
 	@OneToOne
 	private ListenSubject listenSubject;
+	
+	@ManyToOne
+	private Exam exam;
 		
 	private boolean fromOtherCollege;
 	
@@ -26,9 +30,10 @@ public class PassedSubject {
 	
 	public PassedSubject() {}
 
-	public PassedSubject(ListenSubject listenSubject, boolean fromOtherCollege, int grade) {
+	public PassedSubject(ListenSubject listenSubject, Exam exam, boolean fromOtherCollege, int grade) {
 		super();
 		this.listenSubject = listenSubject;
+		this.exam = exam;
 		this.fromOtherCollege = fromOtherCollege;
 		this.grade = grade;
 	}

@@ -12,19 +12,27 @@ import student_administration.models.Subject;
 import student_administration.repositories.DepartmentRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes= {student_administration.StudentAdministrationApp.class})
 public class DepartmentRepositoryTest {
 
 	@Autowired
 	DepartmentRepository departmentRepository;
 	
 	@Test
-	public void getSubjectOnDepartment() throws Exception{
-		System.out.println("---getSubjectOnDepartment---");
-		List<Subject> subjects = departmentRepository.getSubjectByDepartmentId(1);
+	public void getSubjectsForDepartment() throws Exception{
+		System.out.println("---getSubjectsForDepartment---");
+		List<Subject> subjects = departmentRepository.getSubjectsByDepartmentId(1);
 		
 		for(Subject s : subjects) {
 			System.out.println(s);
 		}
+	}
+	
+	@Test
+	public void getAverageGradeForSubjectInYearInterval() throws Exception{
+		System.out.println("---getAverageGradeForSubjectInYearInterval---");
+		Float averageGrade = departmentRepository.getAverageGradeForSubjectInYearInterval(2, 2019, 2020);
+		
+		System.out.println(averageGrade);
 	}
 }

@@ -14,18 +14,16 @@ public class ExamTaking extends Activity {
 	private ExamRegistration examRegistration;
 	
 	private float examPoints;
-	
-	private float preExamPoints;
-	
+		
 	private boolean canceled;
 	
 	public ExamTaking() {}
 
-	public ExamTaking(String note, StudentIndex index, float examPoints, boolean canceled) {
+	public ExamTaking(String note, StudentIndex index, ExamRegistration examRegistration, float examPoints, boolean canceled) {
 		super(note, index);
 		
+		this.examRegistration = examRegistration;
 		this.examPoints = examPoints;
-		this.preExamPoints = examRegistration.getListenSubject().getWonPreExamObligations();
 		this.canceled = canceled;
 	}
 
@@ -45,14 +43,6 @@ public class ExamTaking extends Activity {
 		this.examPoints = examPoints;
 	}
 
-	public float getPreExamPoints() {
-		return preExamPoints;
-	}
-
-	public void setPreExamPoints(float preExamPoints) {
-		this.preExamPoints = preExamPoints;
-	}
-
 	public boolean isCanceled() {
 		return canceled;
 	}
@@ -60,11 +50,4 @@ public class ExamTaking extends Activity {
 	public void setCanceled(boolean canceled) {
 		this.canceled = canceled;
 	}
-	
-	public boolean isPassed() {
-		if(canceled==false && (preExamPoints+examPoints)>50)
-			return true;
-		return false;
-	}
-	
 }

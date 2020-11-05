@@ -4,11 +4,9 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,14 +35,11 @@ public class Subject {
 	
 	private int numberOfLectures;
 	
-	@OneToMany(mappedBy = "subject")
-    private List<HoldSubject> holdSubjectList;
-	
 	@ManyToOne
 	private Department department;
 	
 	@OneToMany(mappedBy = "subject")
-	private List<Exam> exams;
+    private List<HoldSubject> holdSubjectList;
 	
 	public Subject() {}
 	
@@ -131,14 +126,6 @@ public class Subject {
 
 	public void setDepartment(Department department) {
 		this.department = department;
-	}
-
-	public List<Exam> getExams() {
-		return exams;
-	}
-
-	public void setExams(List<Exam> exams) {
-		this.exams = exams;
 	}
 
 	@Override

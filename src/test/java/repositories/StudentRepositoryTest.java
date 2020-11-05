@@ -12,6 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import student_administration.models.Department;
 import student_administration.models.EnrolledYear;
+import student_administration.models.Exam;
+import student_administration.models.ExamRegistration;
+import student_administration.models.ExamTaking;
 import student_administration.models.FirstEnroll;
 import student_administration.models.HighSchool;
 import student_administration.models.HoldSubject;
@@ -19,11 +22,15 @@ import student_administration.models.ListenSubject;
 import student_administration.models.Student;
 import student_administration.models.StudentIndex;
 import student_administration.models.Subject;
+import student_administration.models.WonPreExamObligations;
 import student_administration.models.PassedSubject;
 import student_administration.models.RenewedYear;
 import student_administration.models.SchoolYear;
 import student_administration.repositories.DepartmentRepository;
 import student_administration.repositories.EnrolledYearRepository;
+import student_administration.repositories.ExamRegistrationRepository;
+import student_administration.repositories.ExamRepository;
+import student_administration.repositories.ExamTakingRepository;
 import student_administration.repositories.FirstEnrollRepository;
 import student_administration.repositories.HighSchoolRepository;
 import student_administration.repositories.HoldSubjectRepository;
@@ -34,6 +41,7 @@ import student_administration.repositories.SchoolYearRepository;
 import student_administration.repositories.StudentIndexRepository;
 import student_administration.repositories.StudentRepository;
 import student_administration.repositories.SubjectRepository;
+import student_administration.repositories.WonPreExamObligationsRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= {student_administration.StudentAdministrationApp.class})
@@ -75,6 +83,18 @@ public class StudentRepositoryTest {
 	@Autowired
 	RenewedYearRepository renewedYearRepository;
 	
+	@Autowired
+	ExamRepository examRepository;
+	
+	@Autowired
+	ExamRegistrationRepository examRegistrationRepository;
+	
+	@Autowired
+	ExamTakingRepository examTakingRepository;
+	
+	@Autowired
+	WonPreExamObligationsRepository wonPreExamObligationsRepository;
+	
 	private static boolean setupIsDone = false;
 	
 	@Before
@@ -107,20 +127,59 @@ public class StudentRepositoryTest {
 		subject.setDepartment(department);
 		subjectRepository.save(subject);
 		
-		HoldSubject holdSubject = new HoldSubject(null, subject, null);
+		Subject subject2 = new Subject();
+		subject2.setName("ViS");
+		subject2.setDepartment(department);
+		subjectRepository.save(subject2);
+		
+		SchoolYear schoolYearOld = new SchoolYear(2019, 2020, false);
+		schoolYearRepository.save(schoolYearOld);
+		
+		SchoolYear schoolYear = new SchoolYear(2020, 2021, true);
+		schoolYearRepository.save(schoolYear);
+		
+		HoldSubject holdSubject = new HoldSubject(null, subject, schoolYear);
 		holdSubjectRepository.save(holdSubject);
+		
+		HoldSubject holdSubject2 = new HoldSubject(null, subject2, schoolYearOld);
+		holdSubjectRepository.save(holdSubject2);
+		
+		HoldSubject holdSubject3 = new HoldSubject(null, subject2, schoolYear);
+		holdSubjectRepository.save(holdSubject3);
 		
 		ListenSubject listenSubject = new ListenSubject(index, holdSubject);
 		listenSubjectRepository.save(listenSubject);
 		
-		PassedSubject passedSubject = new PassedSubject(listenSubject, false, 10);
+		ListenSubject listenSubject2 = new ListenSubject(index, holdSubject2);
+		listenSubjectRepository.save(listenSubject2);
+		
+		ListenSubject listenSubject3 = new ListenSubject(index, holdSubject3);
+		listenSubjectRepository.save(listenSubject3);
+		
+		WonPreExamObligations wonPreExamObligations = new WonPreExamObligations(listenSubject, 20, null);
+		wonPreExamObligationsRepository.save(wonPreExamObligations);
+		
+		WonPreExamObligations wonPreExamObligations2 = new WonPreExamObligations(listenSubject, 10, null);
+		wonPreExamObligationsRepository.save(wonPreExamObligations2);
+		
+		Exam exam = new Exam();
+		exam.setHoldSubject(holdSubject);
+		examRepository.save(exam);
+		
+		ExamRegistration examRegistration = new ExamRegistration("", index, exam, listenSubject);
+		examRegistrationRepository.save(examRegistration);
+		
+		ExamTaking examTaking = new ExamTaking("", index, examRegistration, 30, false);
+		examTakingRepository.save(examTaking);
+		
+		PassedSubject passedSubject = new PassedSubject(listenSubject, exam, false, 10);
 		passedSubjectRepository.save(passedSubject);
 		
-		SchoolYear schoolYearOld = new SchoolYear("2019/2020", false);
-		schoolYearRepository.save(schoolYearOld);
+		PassedSubject passedSubject2 = new PassedSubject(listenSubject2, null, false, 7); // 19-20
+		passedSubjectRepository.save(passedSubject2);
 		
-		SchoolYear schoolYear = new SchoolYear("2020/2021", true);
-		schoolYearRepository.save(schoolYear);
+		PassedSubject passedSubject3 = new PassedSubject(listenSubject3, null, false, 6); // 20-21
+		passedSubjectRepository.save(passedSubject3);
 		
 		EnrolledYear enrolledYearOld = new EnrolledYear("", index, schoolYearOld, new ArrayList<ListenSubject>());
 		enrolledYearRepository.save(enrolledYearOld);
