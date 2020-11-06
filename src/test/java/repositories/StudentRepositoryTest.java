@@ -1,6 +1,7 @@
 package repositories;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -116,7 +117,7 @@ public class StudentRepositoryTest {
 		department.setShortName("RN");
 		departmentRepository.save(department);
 		
-		StudentIndex index = new StudentIndex(3318, true, student, department);
+		StudentIndex index = new StudentIndex(3318, true, new Date(), student, department);
 		studentIndexRepository.save(index);
 		
 		FirstEnroll firstEnroll = new FirstEnroll("Prvi upis", index, 40, 60, highSchool);

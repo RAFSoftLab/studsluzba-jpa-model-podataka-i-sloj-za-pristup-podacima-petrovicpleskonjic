@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +29,9 @@ public class College {
 	@ManyToMany(mappedBy = "colleges")
 	private List<Professor> professors;
 	
+	@OneToMany(mappedBy = "previousCollege")
+	private List<Student> students;
+	
 	public College() {}
 		
 	public College(String name, String place, String type) {
@@ -43,6 +47,14 @@ public class College {
 	
 	public void setProfessors(List<Professor> professors) {
 		this.professors = professors;
+	}
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+	
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 	public int getCollegeId() {

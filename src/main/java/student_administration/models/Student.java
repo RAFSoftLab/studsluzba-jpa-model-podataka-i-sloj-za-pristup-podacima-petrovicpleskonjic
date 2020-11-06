@@ -53,6 +53,9 @@ public class Student {
 	
 	@OneToMany(mappedBy= "student")
 	private List<StudentIndex> studentIndexes;
+	
+	@ManyToOne
+	private College previousCollege;
 		
 	public Student() {}
 	
@@ -86,6 +89,14 @@ public class Student {
 
 	public int getEnrollementYear() {
 		return enrollementYear;
+	}
+	
+	public College getPreviousCollege() {
+		return previousCollege;
+	}
+	
+	public void setPreviousCollege(College previousCollege) {
+		this.previousCollege = previousCollege;
 	}
 
 	public String getName() {

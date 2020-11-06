@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,6 +26,8 @@ public class StudentIndex {
 	
 	private boolean active;
 	
+	private Date enrollmentDate;
+	
 	@ManyToOne
 	private Student student;
 
@@ -42,10 +45,11 @@ public class StudentIndex {
 	
 	public StudentIndex() {}
 	
-	public StudentIndex(int number, boolean active, Student student, Department department) {
+	public StudentIndex(int number, boolean active, Date enrollmentDate, Student student, Department department) {
 		super();
 		this.number = number;
 		this.active = active;
+		this.enrollmentDate = enrollmentDate;
 		this.student = student;
 		this.department = department;
 	}
@@ -60,6 +64,14 @@ public class StudentIndex {
 
 	public boolean isActive() {
 		return active;
+	}
+	
+	public Date getEnrollmentDate() {
+		return enrollmentDate;
+	}
+	
+	public void setEnrollmentDate(Date enrollmentDate) {
+		this.enrollmentDate = enrollmentDate;
 	}
 
 	public Student getStudent() {

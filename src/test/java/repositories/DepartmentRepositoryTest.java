@@ -31,7 +31,7 @@ public class DepartmentRepositoryTest {
 	@Test
 	public void getAverageGradeForSubjectInYearInterval() throws Exception{
 		System.out.println("---getAverageGradeForSubjectInYearInterval---");
-		Float averageGrade = departmentRepository.getAverageGradeForSubjectInYearInterval(2, 2019, 2020);
+		Float averageGrade = departmentRepository.getAverageGradeForSubjectInYearInterval(2, 2019, 2021);
 		
 		System.out.println(averageGrade);
 	}
