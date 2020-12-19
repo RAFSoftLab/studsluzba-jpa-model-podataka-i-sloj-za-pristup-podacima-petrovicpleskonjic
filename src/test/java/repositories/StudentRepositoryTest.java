@@ -16,6 +16,7 @@ import student_administration.models.EnrolledYear;
 import student_administration.models.Exam;
 import student_administration.models.ExamRegistration;
 import student_administration.models.ExamTaking;
+import student_administration.models.ExaminationPeriod;
 import student_administration.models.FirstEnroll;
 import student_administration.models.HighSchool;
 import student_administration.models.HoldSubject;
@@ -32,6 +33,7 @@ import student_administration.repositories.EnrolledYearRepository;
 import student_administration.repositories.ExamRegistrationRepository;
 import student_administration.repositories.ExamRepository;
 import student_administration.repositories.ExamTakingRepository;
+import student_administration.repositories.ExaminationPeriodRepository;
 import student_administration.repositories.FirstEnrollRepository;
 import student_administration.repositories.HighSchoolRepository;
 import student_administration.repositories.HoldSubjectRepository;
@@ -89,6 +91,9 @@ public class StudentRepositoryTest {
 	
 	@Autowired
 	ExamRegistrationRepository examRegistrationRepository;
+	
+	@Autowired
+	ExaminationPeriodRepository examinationPeriodRepository;
 	
 	@Autowired
 	ExamTakingRepository examTakingRepository;
@@ -163,8 +168,13 @@ public class StudentRepositoryTest {
 		WonPreExamObligations wonPreExamObligations2 = new WonPreExamObligations(listenSubject, 10, null);
 		wonPreExamObligationsRepository.save(wonPreExamObligations2);
 		
+		ExaminationPeriod examinationPeriod = new ExaminationPeriod();
+		examinationPeriod.setName("Januarski");
+		examinationPeriodRepository.save(examinationPeriod);
+		
 		Exam exam = new Exam();
 		exam.setHoldSubject(holdSubject);
+		exam.setExaminationPeriod(examinationPeriod);
 		examRepository.save(exam);
 		
 		ExamRegistration examRegistration = new ExamRegistration("", index, exam, listenSubject);
@@ -190,6 +200,7 @@ public class StudentRepositoryTest {
 		
 		RenewedYear renewedYear = new RenewedYear("", index, schoolYear, new ArrayList<ListenSubject>());
 		renewedYearRepository.save(renewedYear);
+		
 		
 		// To run the setup only once, else it'd be called on every test method call
 		setupIsDone = true;
