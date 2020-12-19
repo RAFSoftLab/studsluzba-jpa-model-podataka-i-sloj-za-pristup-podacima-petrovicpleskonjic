@@ -62,6 +62,16 @@ public class SchoolYear {
 		return active;
 	}
 
+	
+	
+	public void setFirstYear(int firstYear) {
+		this.firstYear = firstYear;
+	}
+
+	public void setSecondYear(int secondYear) {
+		this.secondYear = secondYear;
+	}
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}
@@ -92,6 +102,6 @@ public class SchoolYear {
 
 	@Override
 	public String toString() {
-		return "SchoolYear [firstYear=" + firstYear + ", secondYear=" + secondYear + ", active=" + active + "]";
+		return firstYear + "/" + secondYear;
 	}
 }

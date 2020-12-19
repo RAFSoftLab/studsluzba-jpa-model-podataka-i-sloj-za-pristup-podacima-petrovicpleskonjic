@@ -31,4 +31,7 @@ public interface ExamRepository extends CrudRepository<Exam, Integer> {
 	
 	@Query("SELECT sum(wpeo.points) FROM WonPreExamObligations wpeo WHERE wpeo.listenSubject.listenSubjectId = :listenSubjectId")
 	Float getWonPreExamPointsForListenedSubject(int listenSubjectId);
+	
+	@Query("SELECT e FROM Exam e WHERE e.examinationPeriod.examinationPeriodId = :examinationPeriod")
+    List<Exam> getExamsForExaminationPeriod(int examinationPeriod);
 }

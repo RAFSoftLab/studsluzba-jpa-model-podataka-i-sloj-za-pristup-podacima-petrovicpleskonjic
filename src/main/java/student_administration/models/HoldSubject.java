@@ -3,6 +3,7 @@ package student_administration.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name="holdsubject")
@@ -33,7 +41,8 @@ public class HoldSubject {
 	@ManyToOne
 	private SchoolYear schoolYear;
 	
-	@OneToMany(mappedBy = "holdSubject")
+	@OneToMany(mappedBy = "holdSubject", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
     private List<ListenSubject> listenSubjectList;
 	
 	@OneToMany(mappedBy = "holdSubject")
@@ -41,6 +50,8 @@ public class HoldSubject {
 	
 	@OneToMany(mappedBy = "holdSubject")
 	private List<Exam> exams;
+
+	
 	
 	public HoldSubject() {}
 
@@ -81,6 +92,24 @@ public class HoldSubject {
 
 	@Override
 	public String toString() {
-		return "HoldSubject [professorOwner=" + professorOwner + ", subject=" + subject + ", schoolYear=" + schoolYear + "]";
+		return subject.getName();
 	}
+
+	public List<ListenSubject> getListenSubjectList() {
+		return listenSubjectList;
+	}
+
+	public void setListenSubjectList(List<ListenSubject> listenSubjectList) {
+		this.listenSubjectList = listenSubjectList;
+	}
+
+	public List<PreExamObligations> getPreExamObligations() {
+		return preExamObligations;
+	}
+
+	public void setPreExamObligations(List<PreExamObligations> preExamObligations) {
+		this.preExamObligations = preExamObligations;
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class StudentIndex {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentIndexId;
 		
-	private int number;
+	private int number;	
 	
 	private boolean active;
 	
@@ -100,6 +101,12 @@ public class StudentIndex {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return department.getShortName() + " " + number + "(" + student.getName() + " " + student.getSurname() + ")";
 	}
 	
 }

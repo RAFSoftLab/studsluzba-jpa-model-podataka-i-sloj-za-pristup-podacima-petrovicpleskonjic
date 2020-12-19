@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name="exam")
@@ -36,11 +41,17 @@ public class Exam {
 	@ManyToOne
 	private Professor professor;
 	
-	@OneToMany(mappedBy="exam")
+	@OneToMany(mappedBy="exam", fetch = FetchType.EAGER)
 	List<ExamRegistration> examRegistrations;
 	
 	@OneToMany(mappedBy="exam")
 	List<PassedSubject> passedSubjects;
+	
+	@Transient
+	private StringProperty professorName = new SimpleStringProperty();
+	
+	@Transient
+	private StringProperty subject = new SimpleStringProperty();
 	
 	public Exam() {}
 
@@ -110,6 +121,31 @@ public class Exam {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+
+	public List<ExamRegistration> getExamRegistrations() {
+		return examRegistrations;
+	}
+
+	public void setExamRegistrations(List<ExamRegistration> examRegistrations) {
+		this.examRegistrations = examRegistrations;
+	}
+
+	public List<PassedSubject> getPassedSubjects() {
+		return passedSubjects;
+	}
+
+	public void setPassedSubjects(List<PassedSubject> passedSubjects) {
+		this.passedSubjects = passedSubjects;
+	}
 	
+	@Transient
+	public String getProfessorName() {
+		return professor.getName() + " " + professor.getSurname();
+	}
+	
+	@Transient
+	public String getSubject() {
+		return holdSubject.getSubject().getName();
+	}
 	
 }

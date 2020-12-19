@@ -1,6 +1,7 @@
 package student_administration.models;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class ExaminationPeriod {
 	
 	private String name;
 	
-	private Date startDate;
+	private LocalDate startDate;
 	
-	private Date endDate;
+	private LocalDate endDate;
 	
 	@OneToMany(mappedBy = "examinationPeriod")
 	private List<Exam> exams;
@@ -36,7 +37,7 @@ public class ExaminationPeriod {
 	
 	public ExaminationPeriod() {}
 
-	public ExaminationPeriod(String name, Date startDate, Date endDate, List<Exam> exams) {
+	public ExaminationPeriod(String name, LocalDate startDate, LocalDate endDate, List<Exam> exams) {
 		super();
 		this.name = name;
 		this.startDate = startDate;
@@ -60,19 +61,19 @@ public class ExaminationPeriod {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 

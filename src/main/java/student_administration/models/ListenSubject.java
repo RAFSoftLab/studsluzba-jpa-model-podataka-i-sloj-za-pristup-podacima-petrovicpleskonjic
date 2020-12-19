@@ -11,6 +11,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name="listensubject")
@@ -41,6 +45,12 @@ public class ListenSubject {
 	
 	@OneToOne(mappedBy = "listenSubject")
 	private PassedSubject passedSubject;
+	
+	@Transient
+	private StringProperty subject = new SimpleStringProperty();
+	@Transient
+	private StringProperty professor = new SimpleStringProperty();
+
 	
 	public ListenSubject() {}
 
@@ -93,7 +103,17 @@ public class ListenSubject {
 	public void setListenSubjectId(int listenSubjectId) {
 		this.listenSubjectId = listenSubjectId;
 	}
+	
+	@Transient
+	public String getSubject() {
+		return holdSubject.getSubject().getName();
+	}
 
+	@Transient
+	public String getProfessor() {
+		return holdSubject.getProfessorOwner().getName() + " " + holdSubject.getProfessorOwner().getSurname();
+	}
+	
 	@Override
 	public String toString() {
 		return "ListenSubject [holdSubject=" + holdSubject + "]";

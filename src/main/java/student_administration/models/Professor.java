@@ -45,14 +45,12 @@ public class Professor{
 
 	public Professor() {}
 	
-	public Professor(String name, String surname, String middlename, String email,
-			List<TitleOfProfessor> titles) {
+	public Professor(String name, String surname, String middlename, String email) {
 		super();
 		this.name = name;
 		this.surname = surname;
 		this.middlename = middlename;
 		this.email = email;
-		this.titles = titles;
 	}
 	
 	public void setColleges(List<College> colleges) {
@@ -113,6 +111,6 @@ public class Professor{
 
 	@Override
 	public String toString() {
-		return "Professor [name=" + name + ", surname=" + surname + "]";
+		return name + " " + surname;
 	}
 }

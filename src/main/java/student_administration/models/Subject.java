@@ -130,6 +130,6 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return "Subject [code=" + code + ", name=" + name + "]";
+		return name;
 	}
 }

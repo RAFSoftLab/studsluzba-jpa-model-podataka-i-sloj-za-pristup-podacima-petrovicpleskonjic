@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import student_administration.models.Student;
 import student_administration.models.EnrolledYear;
+import student_administration.models.ListenSubject;
 import student_administration.models.PassedSubject;
 import student_administration.models.RenewedYear;
 
@@ -36,4 +37,7 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
     		+ "(SELECT index.student.studentId FROM StudentIndex index WHERE index.studentIndexId IN "
     		+ "(SELECT fe.studentIndex.studentIndexId FROM FirstEnroll fe WHERE fe.highSchool.highSchoolId = :highSchoolId))")
     List<Student> getStudentsByHighSchool(int highSchoolId);
+    
+    @Query("SELECT ls FROM ListenSubject ls WHERE ls.enrolledYear.schoolYear.schoolyearId = :schoolYear AND ls.studentIndex.studentIndexId = :studentIndexId")
+    List<ListenSubject> getListenSubjectBySchoolYear(int schoolYear, int studentIndexId);
 }

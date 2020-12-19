@@ -4,4 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import student_administration.models.ListenSubject;
 
-public interface ListenSubjectRepository extends CrudRepository<ListenSubject, Integer> {}
+public interface ListenSubjectRepository extends CrudRepository<ListenSubject, Integer> {
+	
+	
+}

@@ -38,6 +38,12 @@ public class Department implements Serializable {
 	private List<StudentIndex> studentIndexes;
 	
 	public Department() {}
+	
+	public Department(String name, String shortName) {
+		super();
+		this.name = name;
+		this.shortName = shortName;
+	}
 
 	public Department(String name, String shortName, int yearOfAccreditation, String title, int durationInSemesters,
 			TypeOfStudy typeOfStudy, List<Subject> subjects, List<StudentIndex> studentIndexes) {
@@ -126,6 +132,11 @@ public class Department implements Serializable {
 		this.studentIndexes = studentIndexes;
 	}	
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return shortName;
+	}
 
 /*
 	public Student addStudent(Student student) {

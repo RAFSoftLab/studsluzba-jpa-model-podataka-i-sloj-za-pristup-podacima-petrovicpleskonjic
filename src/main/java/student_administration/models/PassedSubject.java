@@ -8,6 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name="passedsubject")
@@ -27,6 +31,9 @@ public class PassedSubject {
 	private boolean fromOtherCollege;
 	
 	private int grade;
+	
+	@Transient
+	private StringProperty subject = new SimpleStringProperty();
 	
 	public PassedSubject() {}
 
@@ -52,6 +59,11 @@ public class PassedSubject {
 
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	
+	@Transient
+	public String getSubject() {
+		return listenSubject.getHoldSubject().getSubject().getName();
 	}
 
 	@Override

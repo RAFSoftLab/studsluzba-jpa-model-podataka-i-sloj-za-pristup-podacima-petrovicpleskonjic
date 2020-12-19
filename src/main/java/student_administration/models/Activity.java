@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -38,4 +39,30 @@ public abstract class Activity {
 		this.note = note;
 		this.studentIndex = studentIndex;
 	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public StudentIndex getStudentIndex() {
+		return studentIndex;
+	}
+
+	public void setStudentIndex(StudentIndex studentIndex) {
+		this.studentIndex = studentIndex;
+	}
+	
+	
 }

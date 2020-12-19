@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,19 +28,27 @@ public class Student {
 	
 	private String middlename;
 	
-	private int jmbg;
+	private String jmbg;
 	
-	private Date birthday;
+	private LocalDate birthday;
 	
 	private String placeOfBirth;
 	
 	private String countryOfBirth;
 	
 	private String nationality;
+		
+	private String citizenship;
 	
 	private String gender;
 	
-	private String address;
+	private String residentalAddress;	//adresa stanovanja
+	
+	private String residentalPlase;
+	
+	private String addressOfResidence;	//adresa prebivalista
+	
+	private String placeOfResidence;
 	
 	private String mobileNumber;
 	
@@ -51,7 +60,7 @@ public class Student {
 	
 	private String idCardIssuer;
 	
-	@OneToMany(mappedBy= "student")
+	@OneToMany(mappedBy= "student", fetch = FetchType.EAGER)
 	private List<StudentIndex> studentIndexes;
 	
 	@ManyToOne
@@ -59,9 +68,9 @@ public class Student {
 		
 	public Student() {}
 	
-	public Student(int enrollementYear, String name, String surname, String middlename, int jmbg,
-			Date birthday, String placeOfBirth, String countryOfBirth, String nationality, String genter,
-			String address, String mobileNumber, String email, String facultyMail, String idCardNumber,
+	public Student(int enrollementYear, String name, String surname, String middlename, String jmbg,
+			LocalDate birthday, String placeOfBirth, String countryOfBirth, String nationality, String genter,
+			String residentalAddress, String mobileNumber, String email, String facultyMail, String idCardNumber,
 			String idCardIssuer, HighSchool highSchool, Department department, List<StudentIndex> studentIndexes) {
 		super();
 		this.enrollementYear = enrollementYear;
@@ -74,7 +83,7 @@ public class Student {
 		this.countryOfBirth = countryOfBirth;
 		this.nationality = nationality;
 		this.gender = genter;
-		this.address = address;
+		this.residentalAddress = residentalAddress;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
 		this.facultyMail = facultyMail;
@@ -111,11 +120,11 @@ public class Student {
 		return middlename;
 	}
 
-	public int getJmbg() {
+	public String getJmbg() {
 		return jmbg;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
@@ -135,8 +144,8 @@ public class Student {
 		return gender;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getResidentalAddress() {
+		return residentalAddress;
 	}
 
 	public String getMobileNumber() {
@@ -183,12 +192,12 @@ public class Student {
 		this.middlename = middlename;
 	}
 
-	public void setJmbg(int jmbg) {
+	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setBirthday(LocalDate localDate) {
+		this.birthday = localDate;
 	}
 
 	public void setPlaceOfBirth(String placeOfBirth) {
@@ -202,13 +211,37 @@ public class Student {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
+	
+	public String getCitizenship() {
+		return citizenship;
+	}
+
+	public void setCitizenship(String citizenship) {
+		this.citizenship = citizenship;
+	}
+
+	public String getIdCardNumber() {
+		return idCardNumber;
+	}
+
+	public void setIdCardNumber(String idCardNumber) {
+		this.idCardNumber = idCardNumber;
+	}
+
+	public String getIdCardIssuer() {
+		return idCardIssuer;
+	}
+
+	public void setIdCardIssuer(String idCardIssuer) {
+		this.idCardIssuer = idCardIssuer;
+	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setResidentalAddress(String residentalAddress) {
+		this.residentalAddress = residentalAddress;
 	}
 
 	public void setMobileNumber(String mobileNumber) {
@@ -232,6 +265,35 @@ public class Student {
 	}
 
 	public void setIndexs(List<StudentIndex> studentIndexes) {
+		this.studentIndexes = studentIndexes;
+	}
+	
+
+	public String getResidentalPlase() {
+		return residentalPlase;
+	}
+
+	public void setResidentalPlase(String residentalPlase) {
+		this.residentalPlase = residentalPlase;
+	}
+
+	public String getAddressOfResidence() {
+		return addressOfResidence;
+	}
+
+	public void setAddressOfResidence(String addressOfResidence) {
+		this.addressOfResidence = addressOfResidence;
+	}
+
+	public String getPlaceOfResidence() {
+		return placeOfResidence;
+	}
+
+	public void setPlaceOfResidence(String placeOfResidence) {
+		this.placeOfResidence = placeOfResidence;
+	}
+
+	public void setStudentIndexes(List<StudentIndex> studentIndexes) {
 		this.studentIndexes = studentIndexes;
 	}
 

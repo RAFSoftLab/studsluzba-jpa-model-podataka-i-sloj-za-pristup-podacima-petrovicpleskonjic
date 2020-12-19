@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -33,9 +34,10 @@ public class TitleOfProfessor {
 	
 	public TitleOfProfessor() {}
 
-	public TitleOfProfessor(String title, Date dateOfElection, boolean active,
+	public TitleOfProfessor(AcademicTitle academicTitle, Date dateOfElection, boolean active,
 			String scientificArea, Professor professor) {
 		super();
+		this.academicTitle = academicTitle;
 		this.dateOfElection = dateOfElection;
 		this.active = active;
 		this.scientificArea = scientificArea;
@@ -80,6 +82,14 @@ public class TitleOfProfessor {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+
+	public AcademicTitle getAcademicTitle() {
+		return academicTitle;
+	}
+
+	public void setAcademicTitle(AcademicTitle academicTitle) {
+		this.academicTitle = academicTitle;
 	}
 	
 	
