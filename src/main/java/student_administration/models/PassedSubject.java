@@ -65,6 +65,10 @@ public class PassedSubject {
 	public String getSubject() {
 		return listenSubject.getHoldSubject().getSubject().getName();
 	}
+	
+	public ListenSubject getListenSubject() {
+		return listenSubject;
+	}
 
 	@Override
 	public String toString() {

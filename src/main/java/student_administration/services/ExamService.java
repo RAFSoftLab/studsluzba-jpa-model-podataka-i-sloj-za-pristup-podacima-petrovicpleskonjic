@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import student_administration.models.Exam;
+import student_administration.models.ExamResult;
+import student_administration.models.ExamTaking;
+import student_administration.models.PassedSubject;
 import student_administration.repositories.ExamRepository;
+import student_administration.repositories.ExamTakingRepository;
 
 @Service
 public class ExamService {
@@ -15,6 +19,8 @@ public class ExamService {
 	@Autowired
 	ExamRepository examRepo;
 	
+	@Autowired
+	ExamTakingRepository examTakingRepo;
 	
 	public Exam saveExam(Exam e) {
 		return examRepo.save(e);
@@ -32,5 +38,28 @@ public class ExamService {
 		List<Exam> rez = new ArrayList<Exam>();
 		iter.forEach(rez :: add);
 		return rez;
+	}
+	
+	public List<ExamResult> getExamResult(Exam e){
+		List<PassedSubject> ps = e.getPassedSubjects();
+		List<ExamResult> er = new ArrayList<ExamResult>();
+		for(PassedSubject p : ps) {
+			ExamResult err = new ExamResult();
+			err.setIndex(p.getListenSubject().getStudentIndex());
+			err.setGrade(p.getGrade());
+			
+			er.add(err);
+		}
+		Iterable<ExamTaking> itertaking =  examTakingRepo.findAll(); 
+		List<ExamTaking> taking = new ArrayList<ExamTaking>();
+		itertaking.forEach(taking :: add);
+		for(ExamTaking ett : taking) {
+			for(ExamResult errr : er) {
+				if(ett.getStudentIndex().getStudentIndexId() == errr.getIndex().getStudentIndexId()) {
+					errr.setExamPoints(ett.getExamPoints());
+				}
+			}
+		}
+		return er;
 	}
 }

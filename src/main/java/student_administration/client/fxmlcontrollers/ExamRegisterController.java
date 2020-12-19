@@ -10,7 +10,9 @@ import javafx.scene.control.TableView;
 import student_administration.client.MainViewManager;
 import student_administration.models.Exam;
 import student_administration.models.ExamRegistration;
+import student_administration.models.ExamResult;
 import student_administration.services.DepartmentService;
+import student_administration.services.ExamService;
 
 @Component
 public class ExamRegisterController {
@@ -21,13 +23,16 @@ public class ExamRegisterController {
 	@Autowired
 	MainViewManager mainViewManager;
 	
+	@Autowired
+	ExamService examService;
+	
 	private Exam e;
 	
 	private ObservableList<ExamRegistration> allRegistrations;
-	
 	@FXML private TableView<ExamRegistration> studentOnExamTable;
 	
-	
+	@FXML private TableView<ExamResult> examResultTable;
+	private ObservableList<ExamResult> allExamResults;
 	
 	@FXML
 	public void initialize() {
@@ -35,5 +40,10 @@ public class ExamRegisterController {
 		
 		allRegistrations = FXCollections.observableList(e.getExamRegistrations());
 		studentOnExamTable.setItems(allRegistrations);
+		
+		allExamResults = FXCollections.observableList(examService.getExamResult(e));
+		examResultTable.setItems(allExamResults);
+		
+		
 	}
 }

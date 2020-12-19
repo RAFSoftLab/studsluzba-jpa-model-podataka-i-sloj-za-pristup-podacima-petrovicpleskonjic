@@ -41,4 +41,23 @@
 </GridPane>
 
 </center>
+
+<bottom>
+			<TableView fx:id="examResultTable">
+	       	<columns>
+			<TableColumn text="Indeks">
+	         	 <cellValueFactory><PropertyValueFactory property="index" />
+	         	</cellValueFactory>
+	           	</TableColumn>
+	        	<TableColumn text="Ocena">
+	         	 <cellValueFactory><PropertyValueFactory property="grade" />
+	         	</cellValueFactory>
+	           	</TableColumn>
+	            <TableColumn text="Broj bodova">
+	             <cellValueFactory><PropertyValueFactory property="examPoints" />
+	            </cellValueFactory>
+	            </TableColumn>
+	       </columns>
+	  </TableView>
+</bottom>
 </BorderPane>

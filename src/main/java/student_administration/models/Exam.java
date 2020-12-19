@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -45,7 +48,8 @@ public class Exam {
 	@OneToMany(mappedBy="exam", fetch = FetchType.EAGER)
 	List<ExamRegistration> examRegistrations;
 	
-	@OneToMany(mappedBy="exam")
+	@OneToMany(mappedBy="exam", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	List<PassedSubject> passedSubjects;
 	
 	@Transient
