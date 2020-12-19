@@ -28,7 +28,7 @@
 	       <TableView fx:id="godinaObnoveTable">
 	       	<columns>
 	        	<TableColumn text="Godina">
-	         	 <cellValueFactory><PropertyValueFactory property="firstYear" />
+	         	 <cellValueFactory><PropertyValueFactory property="schoolYear" />
 	         	</cellValueFactory>
 	           	</TableColumn>
 	       </columns>

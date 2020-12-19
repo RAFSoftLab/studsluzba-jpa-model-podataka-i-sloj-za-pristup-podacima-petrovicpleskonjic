@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -96,6 +97,8 @@ public class HoldSubject {
 	}
 
 	public List<ListenSubject> getListenSubjectList() {
+		if(listenSubjectList == null)
+			listenSubjectList = new ArrayList<ListenSubject>();
 		return listenSubjectList;
 	}
 

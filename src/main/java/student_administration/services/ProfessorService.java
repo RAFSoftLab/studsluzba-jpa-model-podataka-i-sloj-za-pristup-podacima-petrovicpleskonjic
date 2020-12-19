@@ -31,4 +31,8 @@ public class ProfessorService {
 		iter.forEach(rez :: add);
 		return rez;
 	}
+
+	public List<Professor> findProfessorbyName(String name, String surname) {
+		return professorRepo.getProfessorsByNameOrSurname(name, surname);
+	}
 }

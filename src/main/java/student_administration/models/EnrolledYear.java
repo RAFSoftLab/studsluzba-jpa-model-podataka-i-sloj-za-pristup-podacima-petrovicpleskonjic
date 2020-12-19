@@ -1,12 +1,18 @@
 package student_administration.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name="enrolledyear")
@@ -16,8 +22,11 @@ public class EnrolledYear extends Activity {
 	@ManyToOne
 	private SchoolYear schoolYear;
 	
-	@OneToMany(mappedBy = "enrolledYear")
+	@OneToMany(mappedBy = "enrolledYear", fetch = FetchType.EAGER)
 	private List<ListenSubject> transferedSubjects;
+	
+	@Transient
+	StringProperty yearName = new SimpleStringProperty();
 	
 	public EnrolledYear() {}
 
@@ -37,11 +46,18 @@ public class EnrolledYear extends Activity {
 	}
 
 	public List<ListenSubject> getTransferedSubjects() {
+		if(transferedSubjects == null)
+			transferedSubjects = new ArrayList<ListenSubject>();
 		return transferedSubjects;
 	}
 
 	public void setTransferedSubjects(List<ListenSubject> transferedSubjects) {
 		this.transferedSubjects = transferedSubjects;
+	}
+	
+	@Transient
+	public String getYearName() {
+		return schoolYear.toString();
 	}
 
 	@Override

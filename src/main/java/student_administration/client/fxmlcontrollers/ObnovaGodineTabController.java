@@ -1,5 +1,6 @@
 package student_administration.client.fxmlcontrollers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import student_administration.client.MainViewManager;
+import student_administration.models.Professor;
+import student_administration.models.RenewedYear;
 import student_administration.models.SchoolYear;
+import student_administration.models.Student;
 import student_administration.services.SchoolYearService;
+import student_administration.services.StudentService;
 
 @Component
 public class ObnovaGodineTabController {
@@ -28,16 +33,24 @@ public class ObnovaGodineTabController {
 	@Autowired
 	SchoolYearService schoolYearService;
 	
-	private ObservableList<SchoolYear> allSchoolYears;
+	@Autowired
+	StudentService studentService;
 	
-	@FXML private TableView<SchoolYear> godinaObnoveTable;
+	private ObservableList<RenewedYear> allSchoolYears;
+	@FXML private TableView<RenewedYear> godinaObnoveTable;
+	
+	private Student s;
 	
 	@FXML
 	public void initialize() {
 		List<SchoolYear> years = schoolYearService.loadAll();
 		godinaCb.setItems(FXCollections.observableArrayList(years));		//da li da ovde prikazuje samo aktivnu godinu ili kao sada sve
-		
+	
+		allSchoolYears = FXCollections.observableList(studentService.loadAllRenewedYear());
+		godinaObnoveTable.setItems(allSchoolYears);
 
+		s = (Student) mainViewManager.getData().get("student");
+		
 		godinaObnoveTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override 
 		    public void handle(MouseEvent event) {
@@ -50,6 +63,11 @@ public class ObnovaGodineTabController {
 	}
 	
 	public void handleObnovaGodine(ActionEvent event) {
-		allSchoolYears.add(godinaCb.getValue());
+		if(godinaCb.getValue()!=null) {
+			RenewedYear ry = studentService.addRenewedYear(godinaCb.getValue(), s);
+			allSchoolYears.add(ry);
+		}else 
+			return;
+//			mainViewManager.changeRoot("PredmetiObnova");
 	}
 }

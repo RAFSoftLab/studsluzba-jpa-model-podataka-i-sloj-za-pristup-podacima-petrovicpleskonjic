@@ -114,6 +114,24 @@ public class ListenSubject {
 		return holdSubject.getProfessorOwner().getName() + " " + holdSubject.getProfessorOwner().getSurname();
 	}
 	
+	
+	
+	public RenewedYear getRenewedYear() {
+		return renewedYear;
+	}
+
+	public void setRenewedYear(RenewedYear renewedYear) {
+		this.renewedYear = renewedYear;
+	}
+
+	public EnrolledYear getEnrolledYear() {
+		return enrolledYear;
+	}
+
+	public void setEnrolledYear(EnrolledYear enrolledYear) {
+		this.enrolledYear = enrolledYear;
+	}
+
 	@Override
 	public String toString() {
 		return "ListenSubject [holdSubject=" + holdSubject + "]";

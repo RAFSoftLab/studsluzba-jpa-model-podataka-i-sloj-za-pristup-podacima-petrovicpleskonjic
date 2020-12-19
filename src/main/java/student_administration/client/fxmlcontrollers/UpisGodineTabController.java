@@ -1,5 +1,6 @@
 package student_administration.client.fxmlcontrollers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import student_administration.client.MainViewManager;
 import student_administration.models.AcademicTitle;
+import student_administration.models.EnrolledYear;
+import student_administration.models.RenewedYear;
 import student_administration.models.SchoolYear;
+import student_administration.models.Student;
 import student_administration.models.TitleOfProfessor;
 import student_administration.services.SchoolYearService;
+import student_administration.services.StudentService;
 
 @Component
 public class UpisGodineTabController {
@@ -30,15 +35,23 @@ public class UpisGodineTabController {
 	@Autowired
 	SchoolYearService schoolYearService;
 	
-	private ObservableList<SchoolYear> allSchoolYears;
+	@Autowired
+	StudentService studentService;
 	
-	@FXML private TableView<SchoolYear> godinaUpisaTable;
+	private ObservableList<EnrolledYear> allSchoolYears;
+	@FXML private TableView<EnrolledYear> godinaUpisaTable;
 	
+	private Student s;
 	
 	@FXML
 	public void initialize() {
 		List<SchoolYear> years = schoolYearService.loadAll();
 		godinaCb.setItems(FXCollections.observableArrayList(years));		//da li da ovde prikazuje samo aktivnu godinu ili kao sada sve
+	
+		allSchoolYears = FXCollections.observableList(studentService.loadAllEnrolledYear());
+		godinaUpisaTable.setItems(allSchoolYears);
+
+		s = (Student) mainViewManager.getData().get("student");
 		
 		godinaUpisaTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override 
@@ -49,12 +62,14 @@ public class UpisGodineTabController {
 		        }
 		    }
 		});
-		
-//		allSchoolYears = FXCollections.observableList( godinaCb.getValue());
-//		godinaUpisaTable.setItems(allSchoolYears);								//kako da ne budu postavljenje sve godine u tabelu, nego samo ona koju mi izaberemo
 	}
 	
 	public void handleUpisGodine(ActionEvent event) {
-		allSchoolYears.add(godinaCb.getValue());
+		if(godinaCb.getValue()!=null) {
+			EnrolledYear ry = studentService.addEnrolledYear(godinaCb.getValue(), s);
+			allSchoolYears.add(ry);
+		}else 
+			return;
+//			mainViewManager.changeRoot("PredmetiObnova");
 	}
 }

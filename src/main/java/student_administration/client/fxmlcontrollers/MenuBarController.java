@@ -59,4 +59,7 @@ public class MenuBarController {
 		mainViewManager.changeRoot("HoldSubject");
 	}
 	
+	public void openProfessorSearch(ActionEvent event) {
+		mainViewManager.changeRoot("ProfessorSearch");
+	}
 }

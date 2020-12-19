@@ -1,5 +1,6 @@
 package student_administration.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,6 +124,8 @@ public class Exam {
 	}
 
 	public List<ExamRegistration> getExamRegistrations() {
+		if(examRegistrations == null)
+			examRegistrations = new ArrayList<ExamRegistration>();
 		return examRegistrations;
 	}
 

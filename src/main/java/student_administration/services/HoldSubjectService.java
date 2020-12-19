@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import student_administration.models.Department;
+import student_administration.models.EnrolledYear;
 import student_administration.models.HoldSubject;
 import student_administration.models.ListenSubject;
 import student_administration.models.Professor;
+import student_administration.models.RenewedYear;
 import student_administration.models.SchoolYear;
 import student_administration.models.StudentIndex;
 import student_administration.models.Subject;
@@ -43,5 +45,21 @@ public class HoldSubjectService {
 
 	public ListenSubject saveListenSubject(HoldSubject holdSubject, StudentIndex value) {
 		return listenSubjectRepo.save(new ListenSubject(value, holdSubject));
+	}
+	
+	public ListenSubject saveListenSubject(HoldSubject holdSubject, StudentIndex value, EnrolledYear enrolled) {
+		ListenSubject ls = new ListenSubject();
+		ls.setHoldSubject(holdSubject);
+		ls.setStudentIndex(value);
+		ls.setEnrolledYear(enrolled);
+		return listenSubjectRepo.save(ls);
+	}
+	
+	public ListenSubject saveListenSubject(HoldSubject holdSubject, StudentIndex value, RenewedYear enrolled) {
+		ListenSubject ls = new ListenSubject();
+		ls.setHoldSubject(holdSubject);
+		ls.setStudentIndex(value);
+		ls.setRenewedYear(enrolled);
+		return listenSubjectRepo.save(ls);
 	}
 }

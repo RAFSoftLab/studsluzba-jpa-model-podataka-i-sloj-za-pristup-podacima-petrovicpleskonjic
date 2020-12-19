@@ -1,8 +1,10 @@
 package student_administration.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -16,7 +18,7 @@ public class RenewedYear extends Activity {
 	@ManyToOne
 	private SchoolYear schoolYear;
 	
-	@OneToMany(mappedBy = "renewedYear")
+	@OneToMany(mappedBy = "renewedYear", fetch = FetchType.EAGER)
 	private List<ListenSubject> renewedSubjects;
 	
 	public RenewedYear() {}
@@ -37,6 +39,8 @@ public class RenewedYear extends Activity {
 	}
 
 	public List<ListenSubject> getRenewedSubjects() {
+		if(renewedSubjects==null)
+			renewedSubjects = new ArrayList<ListenSubject>();
 		return renewedSubjects;
 	}
 
@@ -44,6 +48,8 @@ public class RenewedYear extends Activity {
 		this.renewedSubjects = renewedSubjects;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "RenewedYear [schoolYear=" + schoolYear + "]";
