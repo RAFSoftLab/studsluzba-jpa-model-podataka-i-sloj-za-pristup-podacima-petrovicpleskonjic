@@ -1,5 +1,6 @@
 package student_administration.client;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,6 +24,8 @@ public class MainViewManager {
 		ContextFXMLLoader appFXMLLoader; 
 		
 		private Scene scene;
+		
+		private Stage mainStage;
 		
 		private Map<String,Object> data= new HashMap<String, Object>();
 		
@@ -65,8 +69,15 @@ public class MainViewManager {
 		public Map<String, Object> getData() {
 			return data;
 		}
-
 		
+		public void setMainStage(Stage stage) {
+			this.mainStage = stage;
+		}
+
+		public File openFileChooser() {
+			FileChooser fileChooser = new FileChooser();
+			return fileChooser.showOpenDialog(mainStage);
+		}
 		
 }
 

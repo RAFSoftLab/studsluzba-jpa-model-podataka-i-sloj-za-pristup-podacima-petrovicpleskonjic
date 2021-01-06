@@ -91,6 +91,14 @@ public class Student {
 		this.idCardIssuer = idCardIssuer;
 		this.studentIndexes = studentIndexes;
 	}
+	
+	
+
+	public Student(String name, String surname) {
+		super();
+		this.name = name;
+		this.surname = surname;
+	}
 
 	public int getStudentId() {
 		return studentId;

@@ -33,6 +33,8 @@ public class StudentSearchController {
 	
 	@FXML private TextField brojIndeksaTf;
 	
+	@FXML private TextField departmentTf;
+	
 	private ObservableList<Student> allStudents;
 	
 	@FXML private TableView<Student> studentTable;
@@ -55,10 +57,11 @@ public class StudentSearchController {
 	}
 
 	public void handleFindStudent(ActionEvent event) {
+		allStudents.clear();
 		if(brojIndeksaTf.getText().isEmpty()) {
 			allStudents.addAll(studentSearchService.findStudents(imeTf.getText(), prezimeTf.getText()));
 		}else
-			allStudents.addAll(studentSearchService.findStudentbyIndex(brojIndeksaTf.getText()));		
+			allStudents.addAll(studentSearchService.findStudentbyIndex(brojIndeksaTf.getText(),departmentTf.getText()));		
 	}
 	
 	

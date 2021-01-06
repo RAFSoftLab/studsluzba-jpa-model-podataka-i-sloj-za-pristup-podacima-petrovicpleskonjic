@@ -32,11 +32,10 @@ public class PreExamObligations {
 	
 	public PreExamObligations() {}
 	
-	public PreExamObligations(HoldSubject holdSubject, String type, float maxPoints) {
+	public PreExamObligations(HoldSubject holdSubject, String type) {
 		super();
 		this.holdSubject = holdSubject;
 		this.type = type;
-		this.maxPoints = maxPoints;
 	}
 
 	public String getType() {

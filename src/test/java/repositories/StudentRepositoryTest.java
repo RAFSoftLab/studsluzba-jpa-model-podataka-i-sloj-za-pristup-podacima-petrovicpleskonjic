@@ -209,14 +209,14 @@ public class StudentRepositoryTest {
 	@Test
 	public void getStudentByIndex() throws Exception {
 		System.out.println("---getStudentByIndex---");
-		Student student = studentRepository.getStudentByIndexNumber(3318);
+		Student student = studentRepository.getStudentByIndexNumber(3318, "RN");
 		System.out.println(student);
 	}
 	
 	@Test
 	public void getPassedExamsByIndex() throws Exception {
 		System.out.println("---getPassedExamsByIndex---");
-		List<PassedSubject> passedSubjects = studentRepository.getPassedSubjectsByIndex(3318);
+		List<PassedSubject> passedSubjects = studentRepository.getPassedSubjectsByIndex(1);
 		
 		for (PassedSubject ps : passedSubjects)
 			System.out.println(ps);
@@ -225,7 +225,7 @@ public class StudentRepositoryTest {
 	@Test
 	public void getEnrolledYearsByIndex() throws Exception {
 		System.out.println("---getEnrolledYearsByIndex---");
-		List<EnrolledYear> years = studentRepository.getEnrolledYearsByIndex(3318);
+		List<EnrolledYear> years = studentRepository.getEnrolledYearsByIndex(1);
 		
 		for (EnrolledYear year : years)
 			System.out.println(year);
@@ -234,7 +234,7 @@ public class StudentRepositoryTest {
 	@Test
 	public void getRenewedYearsByIndex() throws Exception {
 		System.out.println("---getRenewedYearsByIndex---");
-		List<RenewedYear> years = studentRepository.getRenewedYearsByIndex(3318);
+		List<RenewedYear> years = studentRepository.getRenewedYearsByIndex(1);
 		
 		for (RenewedYear year : years)
 			System.out.println(year);

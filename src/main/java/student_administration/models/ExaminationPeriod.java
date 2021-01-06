@@ -44,6 +44,21 @@ public class ExaminationPeriod {
 		this.endDate = endDate;
 		this.exams = exams;
 	}
+	
+	
+
+	public ExaminationPeriod(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
+
+	public ExaminationPeriod(String name, SchoolYear schoolYear) {
+		super();
+		this.name = name;
+		this.schoolYear = schoolYear;
+	}
 
 	public int getExaminationPeriodId() {
 		return examinationPeriodId;

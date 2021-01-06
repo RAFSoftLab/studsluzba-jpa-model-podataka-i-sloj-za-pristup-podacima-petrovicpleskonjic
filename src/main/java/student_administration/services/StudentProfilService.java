@@ -32,8 +32,8 @@ public class StudentProfilService {
 	@Autowired
 	ActivityRepository activityRepo;
 	
-	public List<PassedSubject> loadAllPassedSubject(int indexNumber){
-		Iterable<PassedSubject> iter = studentRepo.getPassedSubjectsByIndex(indexNumber);
+	public List<PassedSubject> loadAllPassedSubject(int indexId){
+		Iterable<PassedSubject> iter = studentRepo.getPassedSubjectsByIndex(indexId);
 		List<PassedSubject> rez = new ArrayList<PassedSubject>();
 		iter.forEach(rez :: add);
 		return rez;

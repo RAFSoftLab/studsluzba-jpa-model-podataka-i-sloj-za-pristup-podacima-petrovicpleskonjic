@@ -9,4 +9,7 @@ public interface SchoolYearRepository extends CrudRepository<SchoolYear, Integer
 	
 	@Query("SELECT sy FROM SchoolYear sy WHERE sy.active is true")
     SchoolYear getActiveSchoolYear();
+	
+	@Query("SELECT sy FROM SchoolYear sy WHERE sy.firstYear = :first AND sy.secondYear = :second")
+    SchoolYear findSchoolYear(int first, int second);
 }

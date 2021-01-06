@@ -29,6 +29,7 @@ public class StudentAdministrationApp extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Raf Studentska sluzba");
 		MainViewManager mainView = springContext.getBean(MainViewManager.class);
+		mainView.setMainStage(primaryStage);
 		primaryStage.setScene(mainView.createScene());
 		primaryStage.show();
 	}

@@ -27,7 +27,7 @@ public class StudentSearchService {
 		return studentRepo.getStudentsByNameOrSurname(ime, prezime);				
 	}
 	
-	public Student findStudentbyIndex(String index){
-		return studentRepo.getStudentByIndexNumber(Integer.parseInt(index));				
+	public Student findStudentbyIndex(String index, String departmentName){
+		return studentRepo.getStudentByIndexNumber(Integer.parseInt(index), departmentName);				
 	}
 }

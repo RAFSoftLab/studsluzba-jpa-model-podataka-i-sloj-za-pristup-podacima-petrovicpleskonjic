@@ -33,6 +33,7 @@
                     <MenuItem text="Školska godina" onAction="#openSchoolYear"/>               
                     <MenuItem text="Ispitni rokovi" onAction="#openExaminationPeriod"/> 
                     <MenuItem text="Predmeti" onAction="#openSubject"/> 
+                    <MenuItem text="Import" onAction="#openImport" />
                 </items>                          
             </Menu>
         </MenuBar>    

@@ -12,6 +12,19 @@ public class ExamResult {
 	private int grade;
 	
 	private SimpleStringProperty date = new SimpleStringProperty();
+	
+	
+
+	public ExamResult() {
+		super();
+	}
+
+	public ExamResult(StudentIndex index, float examPoints, int grade) {
+		super();
+		this.index = index;
+		this.examPoints = examPoints;
+		this.grade = grade;
+	}
 
 	public StudentIndex getIndex() {
 		return index;

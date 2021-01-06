@@ -71,6 +71,14 @@ public class Exam {
 		this.professor = professor;
 	}
 
+	
+	
+	public Exam(HoldSubject holdSubject, ExaminationPeriod examinationPeriod) {
+		super();
+		this.holdSubject = holdSubject;
+		this.examinationPeriod = examinationPeriod;
+	}
+
 	public int getExamId() {
 		return examId;
 	}

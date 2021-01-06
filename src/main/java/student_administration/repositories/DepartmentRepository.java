@@ -18,4 +18,7 @@ public interface DepartmentRepository extends CrudRepository<Department, Integer
 			"(SELECT hs.holdSubjectId FROM HoldSubject hs WHERE hs.subject.subjectId = :subjectId AND " +
 			"hs.schoolYear.firstYear BETWEEN :from AND (:to - 1) AND hs.schoolYear.secondYear BETWEEN (:from + 1) AND :to))")
     Float getAverageGradeForSubjectInYearInterval(int subjectId, int from, int to);
+	
+	@Query("SELECT sp from Department sp where sp.shortName like :shortName")
+	Department getStudProgramBySkraceniNaziv(String shortName);
 }

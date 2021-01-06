@@ -54,6 +54,14 @@ public class StudentIndex {
 		this.student = student;
 		this.department = department;
 	}
+	
+	
+	public StudentIndex(int number, Date enrollmentDate, Department department) {
+		super();
+		this.number = number;
+		this.enrollmentDate = enrollmentDate;
+		this.department = department;
+	}
 
 	public int getStudentIndexId() {
 		return studentIndexId;

@@ -57,7 +57,7 @@ public class PolozeniPredmetiProfilController {
 		indexs= student.getStudentIndexes();		
 		for(StudentIndex i : indexs) {
 			if(i.isActive()) {
-				indexNumber = i.getNumber();
+				indexNumber = i.getStudentIndexId();
 			}		
 		}
 		allPassedSubjects = FXCollections.observableList(studentProfilService.loadAllPassedSubject(indexNumber));
