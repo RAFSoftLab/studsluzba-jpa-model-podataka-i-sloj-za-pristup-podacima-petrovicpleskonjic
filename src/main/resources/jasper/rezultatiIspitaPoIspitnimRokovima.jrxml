@@ -43,12 +43,6 @@
 	<variable name="oc10" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(10)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="polozili" class="java.lang.Float">
-		<variableExpression><![CDATA[(SUM($V{oc6},$V{oc7},$V{oc8},$V{oc9},$V{oc10}).floatValue())/$V{numberOdRegister}*100]]></variableExpression>
-	</variable>
-	<variable name="poloziliProcenti" class="java.lang.String">
-		<variableExpression><![CDATA["(polozili/polagali) " + $V{polozili} + "%"]]></variableExpression>
-	</variable>
 	<variable name="prolaznostOc5" class="java.lang.Float">
 		<variableExpression><![CDATA[$V{oc5}/$V{numberOdRegister}*100]]></variableExpression>
 	</variable>
@@ -60,6 +54,9 @@
 	</variable>
 	<variable name="prolaznostOc6Labela" class="java.lang.String">
 		<variableExpression><![CDATA[$V{prolaznostOc6}+"%"]]></variableExpression>
+	</variable>
+	<variable name="prolaznostOc7" class="java.lang.Float">
+		<variableExpression><![CDATA[$V{oc7}/$V{numberOdRegister}*100]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
