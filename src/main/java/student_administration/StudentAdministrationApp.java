@@ -15,8 +15,8 @@ import student_administration.client.MainViewManager;
 public class StudentAdministrationApp extends Application{
 	
 	protected ConfigurableApplicationContext springContext;
-
-	public static void main(String[] args) {
+	
+	public static void start() {
 		launch(StudentAdministrationApp.class);
 	}
 

@@ -117,4 +117,7 @@ public class StudentIndex {
 		return department.getShortName() + " " + number + "(" + student.getName() + " " + student.getSurname() + ")";
 	}
 	
+	public String getReportName() {
+		return department.getShortName() + " " + number;
+	}
 }

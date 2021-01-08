@@ -41,6 +41,9 @@
 </GridPane>
 
 </center>
+<left>
+	<Button onAction="#createReport" text="Napravi izvestaj"/>	   
+</left>
 
 <bottom>
 			<TableView fx:id="examResultTable">

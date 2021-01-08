@@ -13,6 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -80,7 +83,7 @@ public class ListenSubject {
 		this.holdSubject = holdSubject;
 	}
 
-	public float getWonPreExamObligations() {
+	public float getWonPreExamObligationsSum() {
 		float sum=0;
 		for(int i=0;i<wonPreExamObligations.size();i++) {
 			sum=sum + wonPreExamObligations.get(i).getPoints();
@@ -90,6 +93,10 @@ public class ListenSubject {
 
 	public void setWonPreExamObligations(List<WonPreExamObligations> wonPreExamObligations) {
 		this.wonPreExamObligations = wonPreExamObligations;
+	}
+	
+	public List<WonPreExamObligations> getWonPreExamObligations() {
+		return wonPreExamObligations;
 	}
 
 	public List<ExamRegistration> getExamRegistrations() {

@@ -1,15 +1,22 @@
 package student_administration.client.fxmlcontrollers;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import student_administration.client.MainViewManager;
+import student_administration.client.reports.ReportsManager;
 import student_administration.models.Exam;
 import student_administration.models.ExamRegistration;
+import student_administration.models.ExamReport;
 import student_administration.models.ExamResult;
 import student_administration.services.DepartmentService;
 import student_administration.services.ExamService;
@@ -25,6 +32,9 @@ public class ExamRegisterController {
 	
 	@Autowired
 	ExamService examService;
+	
+	@Autowired
+	ReportsManager reportsManager;
 	
 	private Exam e;
 	
@@ -45,5 +55,14 @@ public class ExamRegisterController {
 		examResultTable.setItems(allExamResults);
 		
 		
+	}
+	
+	public void createReport(ActionEvent event) {
+		List<ExamReport> retVal = examService.getReportData(e);
+        Map<String,Object> params = new HashMap<String, Object>();
+        params.put("examinationPeriod", e.getExaminationPeriod().getName());
+        params.put("subject", e.getSubject());
+        params.put("schoolYear", e.getHoldSubject().getSchoolYear().toString());
+        reportsManager.openReport(retVal, params, "rezultatiIspitaPoIspitnimRokovima");
 	}
 }
