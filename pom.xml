@@ -47,7 +47,25 @@
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
         <version>13</version>
-    </dependency>	
+    </dependency>
+    
+   	 <dependency>
+	    <groupId>net.sf.jasperreports</groupId>
+	    <artifactId>jasperreports</artifactId>
+	    <version>6.16.0</version>
+	</dependency>	
+	<dependency>
+	    <groupId>net.sf.jasperreports</groupId>
+	    <artifactId>jasperreports-fonts</artifactId>
+	    <version>6.16.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>win.zqxu</groupId>
+	    <artifactId>jrviewer-fx</artifactId>
+	    <version>0.1.1</version>
+	 </dependency>
+	 	
+	 	
   </dependencies>
   <build>
         <plugins>

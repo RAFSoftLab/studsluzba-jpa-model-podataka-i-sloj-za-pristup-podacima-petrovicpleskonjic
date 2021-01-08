@@ -66,4 +66,8 @@ public class MenuBarController {
 	public void openImport(ActionEvent ecent) {		
 		mainViewManager.changeRoot("importData");
 	}
+	
+	public void openResultOnExam(ActionEvent ecent) {		
+		mainViewManager.changeRoot("resultOnExam");
+	}
 }

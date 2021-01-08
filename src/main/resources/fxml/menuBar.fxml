@@ -16,7 +16,6 @@
                 <items>
                     <MenuItem text="Studenti" onAction="#openStudentSearch"/>                
                     <MenuItem text="Nastavnici" onAction="#openProfessorSearch"/>                               
-                    <MenuItem text="Ispitni rokovi" />
                 </items>                           
             </Menu>
             <Menu text="Novi">
@@ -28,12 +27,16 @@
             </Menu>
             <Menu text="Administracija">
                 <items>
-                    <MenuItem text="Šifarnici" />   
                     <MenuItem text="Studijski programi" onAction="#openDepartment"/>              
                     <MenuItem text="Školska godina" onAction="#openSchoolYear"/>               
                     <MenuItem text="Ispitni rokovi" onAction="#openExaminationPeriod"/> 
                     <MenuItem text="Predmeti" onAction="#openSubject"/> 
                     <MenuItem text="Import" onAction="#openImport" />
+                </items>                          
+            </Menu>
+            <Menu text="Izvestaji">
+                <items>
+                    <MenuItem text="Rezultati ispita" onAction="#openResultOnExam"/>               
                 </items>                          
             </Menu>
         </MenuBar>    

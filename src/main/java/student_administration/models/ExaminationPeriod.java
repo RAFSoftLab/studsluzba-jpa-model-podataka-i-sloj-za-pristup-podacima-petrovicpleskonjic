@@ -108,5 +108,8 @@ public class ExaminationPeriod {
 		this.schoolYear = schoolYear;
 	}
 
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 }
