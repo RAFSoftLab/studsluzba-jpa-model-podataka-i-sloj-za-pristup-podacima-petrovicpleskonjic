@@ -22,29 +22,29 @@
 	<variable name="rBr" class="java.lang.String">
 		<variableExpression><![CDATA[$V{REPORT_COUNT}+"."]]></variableExpression>
 	</variable>
-	<variable name="numberOdRegister" class="java.lang.Integer" calculation="Count">
+	<variable name="numberOdRegister" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[$F{name}]]></variableExpression>
 	</variable>
-	<variable name="oc5" class="java.lang.Integer" calculation="Count">
+	<variable name="oc5" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(5)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="oc6" class="java.lang.Integer" calculation="Count">
+	<variable name="oc6" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(6)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="oc7" class="java.lang.Integer" calculation="Count">
+	<variable name="oc7" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(7)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="oc8" class="java.lang.Integer" calculation="Count">
+	<variable name="oc8" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(8)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="oc9" class="java.lang.Integer" calculation="Count">
+	<variable name="oc9" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(9)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
-	<variable name="oc10" class="java.lang.Integer" calculation="Count">
+	<variable name="oc10" class="java.lang.Float" calculation="Count">
 		<variableExpression><![CDATA[($F{grade}.equals( new java.lang.Integer(10)) ? new Integer(1) : null)]]></variableExpression>
 	</variable>
 	<variable name="polozili" class="java.lang.Float">
-		<variableExpression><![CDATA[($V{numberOdRegister}-$V{oc5})/$V{numberOdRegister}*100]]></variableExpression>
+		<variableExpression><![CDATA[((Float)SUM($V{oc6},$V{oc7},$V{oc8},$V{oc9},$V{oc10}))/$V{numberOdRegister}*100]]></variableExpression>
 	</variable>
 	<variable name="poloziliProcenti" class="java.lang.String">
 		<variableExpression><![CDATA["(polozili/polagali) " + $V{polozili} + "%"]]></variableExpression>
@@ -500,7 +500,8 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="99" splitType="Stretch">
+		<band height="61" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="80" y="20" width="110" height="20" uuid="57d464de-ba5a-4515-948e-b3472d8398d2"/>
 				<box>
